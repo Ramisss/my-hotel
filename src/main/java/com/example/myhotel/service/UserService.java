@@ -4,6 +4,7 @@ package com.example.myhotel.service;
 import com.example.myhotel.dao.impl.UserDao;
 import com.example.myhotel.dto.UserDto;
 import com.example.myhotel.entity.User;
+import com.example.myhotel.exeption.DaoException;
 import com.example.myhotel.mapper.UserMapper;
 import com.example.myhotel.validation.RegisterValidation;
 import lombok.AccessLevel;
@@ -23,7 +24,7 @@ public class UserService {
         return INSTANCE;
     }
 
-    public Integer create(UserDto userDto) {
+    public Integer create(UserDto userDto) throws DaoException {
         if (!validatePhoneAndEmail(userDto)) {
             System.out.println("Please enter correct email or phone number");
         } else if (!checkUserByEmail(userDto.getEmail())) {
@@ -48,21 +49,28 @@ public class UserService {
         return false;
     }
 
-    public boolean checkUserByEmail(String email) { // TODO можно и String
+    public boolean checkUserByEmail(String email) throws DaoException {
         Optional<User> optionalUser = userDao.findByEmail(email);
-        if (optionalUser.isEmpty()) {
+        if (!optionalUser.isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public boolean authEmailAndPassword(String email, String password) {
 
-        if (!userDao.findByEmail(email).isPresent()) {
-           return false;
-        }
-        return true;
+    public boolean authEmailAndPassword(String email, String password) throws DaoException {
+
+           if (userDao.findByEmail(email).isPresent()) {
+
+               User user = userDao.findByEmail(email).orElseThrow(() -> new IllegalStateException("User do not get"));
+               if (user.getPassword().equals(password)) return true;
+               return false;
+           }
+
+        return false;
     }
+
+
 }
 
 

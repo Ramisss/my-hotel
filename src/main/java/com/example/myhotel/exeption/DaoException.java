@@ -4,15 +4,19 @@ import java.sql.SQLException;
 
 public class DaoException extends Exception {
 
-
-    public DaoException(SQLException sqlException) {
+    public DaoException() {
+        super();
     }
 
-    public DaoException(String msg){
-        super(msg);
+    public DaoException(Throwable cause) {
+        super(cause);
     }
 
-    public DaoException(String msg, Throwable cause){
-        super(msg,cause);
+    public DaoException(String message) {
+        super(message);
+    }
+
+    public DaoException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

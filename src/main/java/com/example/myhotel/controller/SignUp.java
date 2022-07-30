@@ -1,13 +1,15 @@
 package com.example.myhotel.controller;
 
 import com.example.myhotel.dto.UserDto;
-import com.example.myhotel.entity.enums.Role;
+import com.example.myhotel.entity.typies.Role;
 import com.example.myhotel.service.UserService;
+import com.example.myhotel.validation.Parametrs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 
@@ -23,16 +25,17 @@ public class SignUp extends HttpServlet {
 
     }
 
+    @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
-        String firstname = req.getParameter("firstname");
-        String lastname = req.getParameter("lastname");
-        String login = req.getParameter("login");
-        String phone = req.getParameter("phone");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        String firstname = req.getParameter(Parametrs.FIRST_NAME);
+        String lastname = req.getParameter(Parametrs.LAST_NAME);
+        String login = req.getParameter(Parametrs.LOGIN);
+        String phone = req.getParameter(Parametrs.PHONE);
+        String email = req.getParameter(Parametrs.EMAIL);
+        String password = req.getParameter(Parametrs.PASSWORD);
 
         UserDto userDto = UserDto.builder()
                 .firstName(firstname)

@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<h1>Choose Hotel!!
+<h1>Choose Rooms!!
 </h1>
 </body>
 </html>

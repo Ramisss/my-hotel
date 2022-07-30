@@ -2,7 +2,7 @@ package com.example.myhotel.mapper;
 
 import com.example.myhotel.dto.UserDto;
 import com.example.myhotel.entity.User;
-import com.example.myhotel.entity.enums.Role;
+import com.example.myhotel.entity.typies.Role;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

@@ -1,7 +1,7 @@
 package com.example.myhotel.entity;
 
 
-import com.example.myhotel.entity.enums.Role;
+import com.example.myhotel.entity.typies.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
