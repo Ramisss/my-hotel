@@ -9,11 +9,16 @@ import com.example.myhotel.mapper.UserMapper;
 import com.example.myhotel.validation.RegisterValidation;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserService {
+
+    public static final Logger logger = LogManager.getLogger();
     private final UserDao userDao = UserDao.getInstance();
     public final UserMapper userMapper = UserMapper.getInstance();
 
@@ -24,27 +29,31 @@ public class UserService {
         return INSTANCE;
     }
 
-    public Integer create(UserDto userDto) throws DaoException {
-        if (!validatePhoneAndEmail(userDto)) {
+    public boolean create(UserDto userDto) throws DaoException {
+        if (!validatePhoneAndEmail(userDto.getEmail(), userDto.getPhoneNumber())) {
+            logger.log(Level.ERROR, "Please enter correct email or phone number");
             System.out.println("Please enter correct email or phone number");
+            return false;
         } else if (!checkUserByEmail(userDto.getEmail())) {
+            logger.log(Level.INFO, userDto.getEmail() + " is exists. Please SIGN IN");
             System.out.println(userDto.getEmail() + " is exists. Please SIGN IN");
+            return false;
         }
         User user = userMapper.mapFrom(userDto);
         User savedUserToDB = userDao.save(user);
         System.out.println(savedUserToDB.getId());
 
-        return savedUserToDB.getId();
+        return true;
     }
 
 //    public boolean authEmailAndPassword(String email, String password){
 //        if (validatePhoneAndEmail())
 //    }
 
-    public boolean validatePhoneAndEmail(UserDto userDto) {
+    public boolean validatePhoneAndEmail(String email, String phone) {
         RegisterValidation registerValidation = new RegisterValidation();
-        if (registerValidation.checkEmailValidation(userDto.getEmail()) &&
-                registerValidation.checkPhoneNumber(userDto.getPhoneNumber()))
+        if (registerValidation.checkEmailValidation(email) &&
+                registerValidation.checkPhoneNumber(phone))
             return true;
         return false;
     }
@@ -60,12 +69,12 @@ public class UserService {
 
     public boolean authEmailAndPassword(String email, String password) throws DaoException {
 
-           if (userDao.findByEmail(email).isPresent()) {
-
-               User user = userDao.findByEmail(email).orElseThrow(() -> new IllegalStateException("User do not get"));
-               if (user.getPassword().equals(password)) return true;
-               return false;
-           }
+        if (userDao.findByEmail(email).isPresent()) {
+//            User user = userDao.findByEmail(email).orElseThrow(() -> new IllegalStateException("User do not get"));
+            String passwordFromDB = userDao.findByEmail(email).get().getPassword();
+            if (passwordFromDB.equals(password)) return true;
+            return false;
+        }
 
         return false;
     }

@@ -176,12 +176,12 @@ public class UserDao implements Dao<Integer, User> {
                 Connection connection = ConnectionTestPool.get();
 //                Connection connection = ConnectionPool.getInstance().getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setObject(1, entity.getFirstName());
-            preparedStatement.setObject(2, entity.getLastName());
-            preparedStatement.setObject(3, entity.getPassword());
-            preparedStatement.setObject(4, entity.getPhoneNumber());
-            preparedStatement.setObject(5, entity.getEmail());
-            preparedStatement.setObject(6, entity.getLogin());
+            preparedStatement.setString(1, entity.getFirstName());
+            preparedStatement.setString(2, entity.getLastName());
+            preparedStatement.setString(3, entity.getPassword());
+            preparedStatement.setString(4, entity.getPhoneNumber());
+            preparedStatement.setString(5, entity.getEmail());
+            preparedStatement.setString(6, entity.getLogin());
             preparedStatement.setObject(7, entity.getRole().ordinal()); // TODO error
 
             preparedStatement.executeUpdate();
@@ -197,6 +197,7 @@ public class UserDao implements Dao<Integer, User> {
 
 //    ConnectionTest worked !!!
     public Optional<User> findByEmail(String email) throws DaoException {
+            User user = new User();
         try (
 //                Connection connection = ConnectionPool.getInstance().getConnection();
                 Connection connection = ConnectionTestPool.get();
@@ -205,15 +206,14 @@ public class UserDao implements Dao<Integer, User> {
             ResultSet resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-//            User user = new User();
-                User user = buildUser(resultSet);
+                 user = buildUser(resultSet);
                 return Optional.of(user);
             }
         } catch (SQLException sqlException) {
             logger.log(Level.ERROR, "can not connect to data base");
             throw new DaoException(sqlException);
         }
-        return Optional.empty();
+        return Optional.ofNullable(user);
 
     }
 

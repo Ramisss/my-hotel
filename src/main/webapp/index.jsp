@@ -58,6 +58,7 @@
 <h1 style="font-weight: bold; color: #4b6cb7;"> Welcome to home page! </h1>
 <br/>
 
+
 <%--<a href="/login" style="color: darkcyan"> SIGN IN </a>--%>
 <button type="button" class="cancelbtn">
     <a href="${pageContext.request.contextPath}/signup"> SIGN UP </a>

@@ -1,7 +1,6 @@
 package com.example.myhotel.controller;
 
 import com.example.myhotel.dto.UserDto;
-import com.example.myhotel.entity.typies.Role;
 import com.example.myhotel.service.UserService;
 import com.example.myhotel.validation.Parametrs;
 import jakarta.servlet.ServletException;
@@ -37,6 +36,7 @@ public class SignUp extends HttpServlet {
         String email = req.getParameter(Parametrs.EMAIL);
         String password = req.getParameter(Parametrs.PASSWORD);
 
+
         UserDto userDto = UserDto.builder()
                 .firstName(firstname)
                 .lastName(lastname)
@@ -44,12 +44,14 @@ public class SignUp extends HttpServlet {
                 .login(login)
                 .email(email)
                 .password(password)
-                .roleId(Role.ROLE_USER.ordinal())
+//                .roleId(Role.ROLE_USER.ordinal())
                 .build();
-        userService.create(userDto);
+        if (userService.create(userDto)) {
+            resp.sendRedirect("/signIn");
+        } else req.getRequestDispatcher("index.jsp").forward(req, resp);
+        ;
 //        req.getRequestDispatcher("/signIn").forward(req,resp);
         // TODO
-        resp.sendRedirect("/signIn");
 
         System.out.println(firstname + lastname);
     }

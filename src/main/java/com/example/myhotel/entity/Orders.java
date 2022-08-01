@@ -16,6 +16,7 @@ public class Orders {
     private Double price;
     private Byte rate;
     private Date orderDate;
+    private boolean isOrdered;
     
 
 
