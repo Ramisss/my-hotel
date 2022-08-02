@@ -81,6 +81,7 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/signup" method="post">
+    <input type="hidden" name="command" value="sign_up">
     <div class="container">
         <h1> Registration Form</h1>
         <hr>

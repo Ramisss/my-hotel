@@ -58,16 +58,18 @@
 <h1 style="font-weight: bold; color: #4b6cb7;"> Welcome to home page! </h1>
 <br/>
 
-
+<form action="${pageContext.request.contextPath}/controller" method="post">
 <%--<a href="/login" style="color: darkcyan"> SIGN IN </a>--%>
-<button type="button" class="cancelbtn">
-    <a href="${pageContext.request.contextPath}/signup"> SIGN UP </a>
+<button type="submit" class="cancelbtn">
+    <input type="hidden" name="command" value="sign_up">
+<%--    <a href="${pageContext.request.contextPath}/signup"> SIGN UP </a>--%>
+<%--    <a href="${pageContext.request.contextPath}/signup"> SIGN UP </a>--%>
 </button>
 <button type="button" class="cancelbtn">
 
     <a href="${pageContext.request.contextPath}/signIn"> SIGN IN </a>
 </button>
-
+</form>
 </body>
 </html>
 
