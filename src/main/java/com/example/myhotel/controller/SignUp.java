@@ -2,7 +2,6 @@ package com.example.myhotel.controller;
 
 import com.example.myhotel.dto.UserDto;
 import com.example.myhotel.service.UserServiceImpl;
-import com.example.myhotel.validation.Parametrs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,12 +28,12 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
-        String firstname = req.getParameter(Parametrs.FIRST_NAME);
-        String lastname = req.getParameter(Parametrs.LAST_NAME);
-        String login = req.getParameter(Parametrs.LOGIN);
-        String phone = req.getParameter(Parametrs.PHONE);
-        String email = req.getParameter(Parametrs.EMAIL);
-        String password = req.getParameter(Parametrs.PASSWORD);
+        String firstname = req.getParameter(RequestParametr.FIRST_NAME);
+        String lastname = req.getParameter(RequestParametr.LAST_NAME);
+        String login = req.getParameter(RequestParametr.LOGIN);
+        String phone = req.getParameter(RequestParametr.PHONE);
+        String email = req.getParameter(RequestParametr.EMAIL);
+        String password = req.getParameter(RequestParametr.PASSWORD);
 
 
         UserDto userDto = UserDto.builder()

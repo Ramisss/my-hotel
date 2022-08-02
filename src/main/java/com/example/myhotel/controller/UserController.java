@@ -18,8 +18,8 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         String name = req.getParameter("firstname");
-        req.setAttribute("firstname",name);
-        req.getRequestDispatcher("pages/signup.jsp").forward(req,resp);
+        req.setAttribute("firstname", name);
+        req.getRequestDispatcher("pages/signup.jsp").forward(req, resp);
     }
 
     @Override

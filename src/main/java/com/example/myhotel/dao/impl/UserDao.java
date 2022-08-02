@@ -95,9 +95,10 @@ public class UserDao implements Dao<Integer, User> {
 
     public User findByEmailAndPassword(String email, String password) throws DaoException {
         User user = null;
-        try (Connection connection = ConnectionTestPool.get();
+        try (
+                Connection connection = ConnectionTestPool.get();
 //                var connection = ConnectionPool.getInstance().getConnection();
-             var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD)
+                var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD)
         ) {
 
             prepareStatement.setObject(1, email);
@@ -117,9 +118,10 @@ public class UserDao implements Dao<Integer, User> {
 
     @Override
     public List<User> findAll() throws DaoException {
-        try (Connection connection = ConnectionTestPool.get();
+        try (
+                Connection connection = ConnectionTestPool.get();
 //                var connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement prepareStatement = connection.prepareStatement(FIND_ALL)
+                PreparedStatement prepareStatement = connection.prepareStatement(FIND_ALL)
 
         ) {
             ResultSet resultSet = prepareStatement.executeQuery();
@@ -154,7 +156,7 @@ public class UserDao implements Dao<Integer, User> {
             }
             return Optional.of(user);
         } catch (SQLException sqlException) {
-            logger.log(Level.ERROR,"can not connect to database",sqlException);
+            logger.log(Level.ERROR, "can not connect to database", sqlException);
             throw new DaoException(sqlException);
         }
     }
@@ -200,8 +202,8 @@ public class UserDao implements Dao<Integer, User> {
     public Optional<User> findByEmail(String email) throws DaoException {
         User user = new User();
         try (
-                Connection connection = ConnectionPool.getInstance().getConnection();
-//                Connection connection = ConnectionTestPool.get();
+//                Connection connection = ConnectionPool.getInstance().getConnection();
+                Connection connection = ConnectionTestPool.get();
                 var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_SQL)) {
             prepareStatement.setString(1, email);
             ResultSet resultSet = prepareStatement.executeQuery();
@@ -223,7 +225,7 @@ public class UserDao implements Dao<Integer, User> {
         int roleId = resultSet.getObject(8, Integer.class);
         checkRole(roleId);
 
-        System.out.println(roleId + "from userDao");
+        logger.log(Level.INFO, roleId + "from DB UserDao method findByEmail");
 
         return new User(
                 resultSet.getObject("id", Integer.class),
@@ -243,10 +245,11 @@ public class UserDao implements Dao<Integer, User> {
 
     public User findByLogin(String login) throws DaoException {
         User user = null;
-        try (Connection connection = ConnectionTestPool.get();
-//                Connection open = ConnectionManager.open()
+        try (
+                Connection open = ConnectionTestPool.get();
+//                Connection open = ConnectionPool.getInstance().getConnection();
+                PreparedStatement prepareStatement = open.prepareStatement(FIND_BY_LOGIN);
         ) {
-            PreparedStatement prepareStatement = connection.prepareStatement(FIND_BY_LOGIN);
 
             prepareStatement.setString(1, login);
 

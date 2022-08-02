@@ -3,19 +3,19 @@
 
     <Properties>
         <Property name="filename">C:\Users\User\Desktop\epamTraining\my-hotel\src\main\resources\logs</Property>
+        <property name="pattern_cmd">%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{1} - %msg%n</property>
+        <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%t] [%M] [%L] %-5level %logger{5} - %msg%n</property>
     </Properties>
 
     <Appenders>
         <RollingFile name="file" fileName="${filename}/logError.log"
                      filePattern="${filename}/logError-%d{yyyy-HH-dd HH-mm-ss-SSS}.log">
-            <PatternLayout>
-                <pattern>%d %p %c{1.} [%t] %m%n</pattern>
-            </PatternLayout>
-            <SizeBasedTriggeringPolicy size="10 KB" />
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{5} - %msg%n"/>
+            <SizeBasedTriggeringPolicy size="10 KB"/>
         </RollingFile>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n%throwable"/>
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{5} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>

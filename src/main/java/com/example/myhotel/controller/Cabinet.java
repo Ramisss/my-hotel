@@ -15,6 +15,6 @@ public class Cabinet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        req.getRequestDispatcher("/WEB-INF/pages/cabinet.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/user-page.jsp").forward(req, resp);
     }
 }
