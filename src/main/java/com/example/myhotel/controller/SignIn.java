@@ -1,6 +1,6 @@
 package com.example.myhotel.controller;
 
-import com.example.myhotel.service.UserService;
+import com.example.myhotel.service.UserServiceImpl;
 import com.example.myhotel.validation.Parametrs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class SignIn extends HttpServlet {
 
     public static final Logger logger = LogManager.getLogger();
 
-    private final UserService userService = UserService.getInstance();
+    private final UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class SignIn extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter(Parametrs.EMAIL);
         String password = req.getParameter(Parametrs.PASSWORD);
-        if (userService.authEmailAndPassword(email, password)) {
+        if (userServiceImpl.authEmailAndPassword(email, password)) {
             resp.sendRedirect("/cabinet");
             logger.log(Level.INFO,"enter home page");
             return;

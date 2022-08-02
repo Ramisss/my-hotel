@@ -3,11 +3,12 @@ package com.example.myhotel.entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 @RequiredArgsConstructor
 @Data
-public class Orders {
+public class Order {
     private Integer id;
     private Integer userId;
     private Integer roomId;

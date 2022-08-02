@@ -1,4 +1,4 @@
-package com.example.myhotel.util;
+package com.example.myhotel.pool;
 
 import java.io.IOException;
 import java.util.Properties;

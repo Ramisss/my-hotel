@@ -1,6 +1,6 @@
 package com.example.myhotel.controller;
 
-import com.example.myhotel.service.UserService;
+import com.example.myhotel.service.UserServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet("/userPage")
 public class UserController extends HttpServlet {
 
-    private final UserService userService = UserService.getInstance();
+    private final UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

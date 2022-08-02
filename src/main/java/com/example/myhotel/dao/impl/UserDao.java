@@ -3,9 +3,10 @@ package com.example.myhotel.dao.impl;
 
 import com.example.myhotel.dao.Dao;
 import com.example.myhotel.entity.User;
-import com.example.myhotel.entity.typies.Role;
+import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exeption.DaoException;
-import com.example.myhotel.util.ConnectionTestPool;
+import com.example.myhotel.pool.ConnectionPool;
+import com.example.myhotel.pool.ConnectionTestPool;
 import lombok.SneakyThrows;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -199,8 +200,8 @@ public class UserDao implements Dao<Integer, User> {
     public Optional<User> findByEmail(String email) throws DaoException {
             User user = new User();
         try (
-//                Connection connection = ConnectionPool.getInstance().getConnection();
-                Connection connection = ConnectionTestPool.get();
+                Connection connection = ConnectionPool.getInstance().getConnection();
+//                Connection connection = ConnectionTestPool.get();
                 var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_SQL)) {
             prepareStatement.setString(1, email);
             ResultSet resultSet = prepareStatement.executeQuery();

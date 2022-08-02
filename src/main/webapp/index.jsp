@@ -64,6 +64,7 @@
     <a href="${pageContext.request.contextPath}/signup"> SIGN UP </a>
 </button>
 <button type="button" class="cancelbtn">
+
     <a href="${pageContext.request.contextPath}/signIn"> SIGN IN </a>
 </button>
 

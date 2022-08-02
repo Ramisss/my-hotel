@@ -1,4 +1,4 @@
-package com.example.myhotel.util;
+package com.example.myhotel.pool;
 
 import java.lang.reflect.Proxy;
 import java.sql.Connection;

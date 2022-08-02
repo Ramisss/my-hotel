@@ -1,7 +1,7 @@
 package com.example.myhotel.controller;
 
 import com.example.myhotel.dto.UserDto;
-import com.example.myhotel.service.UserService;
+import com.example.myhotel.service.UserServiceImpl;
 import com.example.myhotel.validation.Parametrs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +15,7 @@ import java.io.IOException;
 @WebServlet("/signup")
 public class SignUp extends HttpServlet {
 
-    private final UserService userService = UserService.getInstance();
+    private final UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -46,7 +46,7 @@ public class SignUp extends HttpServlet {
                 .password(password)
 //                .roleId(Role.ROLE_USER.ordinal())
                 .build();
-        if (userService.create(userDto)) {
+        if (userServiceImpl.create(userDto)) {
             resp.sendRedirect("/signIn");
         } else req.getRequestDispatcher("index.jsp").forward(req, resp);
         ;

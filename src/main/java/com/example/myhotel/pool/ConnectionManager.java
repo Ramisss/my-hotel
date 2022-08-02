@@ -1,4 +1,4 @@
-package com.example.myhotel.util;
+package com.example.myhotel.pool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ public final class ConnectionManager {
 
     }
 
-    public static Connection open() {
+     static Connection open() throws SQLException {
         try {
             return DriverManager.getConnection(
                     PropertiesUtil.get(URL_KEY),
@@ -24,7 +24,7 @@ public final class ConnectionManager {
                     PropertiesUtil.get(PASSWORD_KEY)
             );
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
     }
 
