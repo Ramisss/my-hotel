@@ -4,10 +4,9 @@ package com.example.myhotel.dao.impl;
 import com.example.myhotel.dao.Dao;
 import com.example.myhotel.entity.User;
 import com.example.myhotel.entity.type.Role;
-import com.example.myhotel.exeption.DaoException;
+import com.example.myhotel.exception.DaoException;
 import com.example.myhotel.pool.ConnectionPool;
 import com.example.myhotel.pool.ConnectionTestPool;
-import lombok.SneakyThrows;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -94,12 +93,12 @@ public class UserDao implements Dao<Integer, User> {
                     "role_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    @SneakyThrows
-    public User findByEmailAndPassword(String email, String password) {
+    public User findByEmailAndPassword(String email, String password) throws DaoException {
         User user = null;
         try (Connection connection = ConnectionTestPool.get();
 //                var connection = ConnectionPool.getInstance().getConnection();
-             var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD)) {
+             var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD)
+        ) {
 
             prepareStatement.setObject(1, email);
             prepareStatement.setObject(2, password);
@@ -109,6 +108,8 @@ public class UserDao implements Dao<Integer, User> {
             while (resultSet.next()) {
                 user = buildUser(resultSet);
             }
+        } catch (SQLException sqlException) {
+            throw new DaoException(sqlException);
         }
         return user;
 
@@ -140,24 +141,22 @@ public class UserDao implements Dao<Integer, User> {
 
 
     @Override
-    public Optional<User> findById(Integer id) throws SQLException {
+    public Optional<User> findById(Integer id) throws DaoException {
 
-        ResultSet resultSet;
-        try (
-                Connection connection = ConnectionTestPool.get();
+        try (Connection connection = ConnectionTestPool.get();
 //                var connection = ConnectionPool.getInstance().getConnection();
-                PreparedStatement prepareStatement = connection.prepareStatement(FIND_BY_ID)) {
+             PreparedStatement prepareStatement = connection.prepareStatement(FIND_BY_ID)) {
             prepareStatement.setInt(1, id);
-            resultSet = prepareStatement.executeQuery();
+            ResultSet resultSet = prepareStatement.executeQuery();
+            User user = null;
+            while (resultSet.next()) {
+                user = buildUser(resultSet);
+            }
+            return Optional.of(user);
+        } catch (SQLException sqlException) {
+            logger.log(Level.ERROR,"can not connect to database",sqlException);
+            throw new DaoException(sqlException);
         }
-        User user = null;
-
-        while (resultSet.next()) {
-            user = buildUser(resultSet);
-        }
-
-        return Optional.of(user);
-        // TODO Optional.of() is it CORRECT?
     }
 
     @Override
@@ -171,8 +170,7 @@ public class UserDao implements Dao<Integer, User> {
     }
 
     @Override
-    @SneakyThrows
-    public User save(User entity) {
+    public User save(User entity) throws DaoException {
         try (
                 Connection connection = ConnectionTestPool.get();
 //                Connection connection = ConnectionPool.getInstance().getConnection();
@@ -192,13 +190,15 @@ public class UserDao implements Dao<Integer, User> {
             entity.setId(generatedKeys.getObject("id", Integer.class));
 
             return entity;
+        } catch (SQLException sqlException) {
+            logger.log(Level.ERROR, "error in database", sqlException);
+            throw new DaoException(sqlException);
         }
 
     }
 
-//    ConnectionTest worked !!!
     public Optional<User> findByEmail(String email) throws DaoException {
-            User user = new User();
+        User user = new User();
         try (
                 Connection connection = ConnectionPool.getInstance().getConnection();
 //                Connection connection = ConnectionTestPool.get();
@@ -207,11 +207,11 @@ public class UserDao implements Dao<Integer, User> {
             ResultSet resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-                 user = buildUser(resultSet);
+                user = buildUser(resultSet);
                 return Optional.of(user);
             }
         } catch (SQLException sqlException) {
-            logger.log(Level.ERROR, "can not connect to data base");
+            logger.log(Level.ERROR, "can not connect to database", sqlException);
             throw new DaoException(sqlException);
         }
         return Optional.ofNullable(user);
@@ -237,11 +237,11 @@ public class UserDao implements Dao<Integer, User> {
     }
 
     private boolean checkRole(int roleId) {
-        if (roleId == 2) return true;
+        if (roleId == 1) return true;
         return false;
     }
 
-    public User findByLogin(String login) throws SQLException {
+    public User findByLogin(String login) throws DaoException {
         User user = null;
         try (Connection connection = ConnectionTestPool.get();
 //                Connection open = ConnectionManager.open()
@@ -254,6 +254,8 @@ public class UserDao implements Dao<Integer, User> {
             while (resultSet.next()) {
                 user = buildUser(resultSet);
             }
+        } catch (SQLException sqlException) {
+            throw new DaoException(sqlException);
         }
 
         return user;

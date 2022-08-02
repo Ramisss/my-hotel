@@ -1,6 +1,6 @@
 package com.example.myhotel.dao;
 
-import com.example.myhotel.exeption.DaoException;
+import com.example.myhotel.exception.DaoException;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +10,7 @@ public interface Dao<K, T> {
 
     List<T> findAll() throws DaoException;
 
-    Optional<T> findById(K id) throws SQLException;
+    Optional<T> findById(K id) throws DaoException;
 
     boolean delete(K id) throws DaoException;
 

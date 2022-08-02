@@ -1,4 +1,4 @@
-package com.example.myhotel.exeption;
+package com.example.myhotel.exception;
 
 public class ServiceException extends Exception {
 

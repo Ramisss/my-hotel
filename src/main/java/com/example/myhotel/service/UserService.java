@@ -1,7 +1,7 @@
 package com.example.myhotel.service;
 
 import com.example.myhotel.dto.UserDto;
-import com.example.myhotel.exeption.ServiceException;
+import com.example.myhotel.exception.ServiceException;
 
 public interface UserService {
 

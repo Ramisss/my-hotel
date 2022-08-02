@@ -1,57 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
-
-<!--    <Properties>-->
-
-<!--        <property name="LOG_FOLDER">logs</property>-->
-<!--        <property name="pattern_cmd">%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{1} - %msg%n</property>-->
-<!--        <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%t] [%M] [%L] %-5level %logger{5} - %msg%n</property>-->
-<!--    </Properties>-->
-<!--    <Appenders>-->
-
-<!--        <Console name="STDOUT" target="SYSTEM_OUT">-->
-<!--            <PatternLayout pattern="${pattern_cmd}"/>-->
-<!--        </Console>-->
-
-<!--        <RollingFile name="TxtFile" fileName="${LOG_FOLDER}/log.txt" append="true"-->
-<!--                     filePattern="${LOG_FOLDER}/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.txt">-->
-<!--            <PatternLayout pattern="${pattern_file}"/>-->
-<!--            <Policies>-->
-<!--                <TimeBasedTriggeringPolicy/>-->
-<!--                <SizeBasedTriggeringPolicy size="300 KB"/>-->
-<!--            </Policies>-->
-<!--            <DefaultRolloverStrategy max="15"/>-->
-<!--        </RollingFile>-->
-
-<!--    </Appenders>-->
-<!--    <Loggers>-->
-<!--        <Root level="TRACE">-->
-<!--            <AppenderRef ref="STDOUT" level="debug"/>-->
-<!--            <AppenderRef ref="TxtFile" level="debug"/>-->
-<!--        </Root>-->
-<!--    </Loggers>-->
-    <Properties>
-
-        <property name="LOG_FOLDER">logs</property>
-        <property name="pattern_cmd">%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{1} - %msg%n</property>
-        <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%t] [%M] [%L] %-5level %logger{5} - %msg%n</property>
-    </Properties>
-
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
-        <File name="File" fileName="all.log" immediateFlush="false" append="true">
-            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{5} - %msg%n"/>
+        <File name="My-File" fileName="all.log" immediateFlush="false" append="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
     <Loggers>
         <Root level="debug">
-            <AppenderRef ref="Console" level = "trace" />
-            <AppenderRef ref="File" level="trace"/>
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="My-File"/>
         </Root>
     </Loggers>
-
 </Configuration>
 
 

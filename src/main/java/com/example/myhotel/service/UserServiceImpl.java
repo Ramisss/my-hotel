@@ -4,8 +4,8 @@ package com.example.myhotel.service;
 import com.example.myhotel.dao.impl.UserDao;
 import com.example.myhotel.dto.UserDto;
 import com.example.myhotel.entity.User;
-import com.example.myhotel.exeption.DaoException;
-import com.example.myhotel.exeption.ServiceException;
+import com.example.myhotel.exception.DaoException;
+import com.example.myhotel.exception.ServiceException;
 import com.example.myhotel.mapper.UserMapper;
 import com.example.myhotel.validation.RegisterValidation;
 import lombok.AccessLevel;
@@ -41,7 +41,12 @@ public class UserServiceImpl implements UserService {
             }
         }
         User user = userMapper.mapFrom(userDto);
-        User savedUserToDB = userDao.save(user);
+        User savedUserToDB = null;
+        try {
+            savedUserToDB = userDao.save(user);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
         logger.log(Level.INFO, savedUserToDB.getId());
 
         return true;

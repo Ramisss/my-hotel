@@ -1,6 +1,6 @@
 package com.example.myhotel.mapper;
 
-public interface Mapper<F, T> {
-    // From To
-    T mapFrom (F object);
+public interface Mapper<T, R> {
+
+    R mapFrom(T object);
 }

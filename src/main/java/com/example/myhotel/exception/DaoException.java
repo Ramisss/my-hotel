@@ -1,6 +1,4 @@
-package com.example.myhotel.exeption;
-
-import java.sql.SQLException;
+package com.example.myhotel.exception;
 
 public class DaoException extends Exception {
 
