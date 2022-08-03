@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 25.07.2022
-  Time: 16:01
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -81,9 +74,10 @@
 
 </head>
 <body>
+<h2>sign-in.jsp</h2>
 <div class="login">
     <div class="form">
-        <form class="login-form" action="${pageContext.request.contextPath}/signIn" method="post">
+        <form class="login-form" action="${pageContext.request.contextPath}/controller" method="post">
             <span class="material-icons">Log In</span>
             <input type="text" name="email" placeholder="email" required/>
             <input type="password" name="password" placeholder="password" required/>

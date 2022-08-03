@@ -80,7 +80,7 @@
     </style>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/signup" method="post">
+<form action="${pageContext.request.contextPath}/controller" method="post">
     <input type="hidden" name="command" value="sign_up">
     <div class="container">
         <h1> Registration Form</h1>
@@ -98,7 +98,7 @@
         <label>
             <b>Phone :</b>
         </label>
-        <input type="text" name="phone" placeholder="Phone Number (+900 00-000-00-00)" required/>
+        <input type="text" name="phone" placeholder="Phone Number (+998 00-000-00-00)" required/>
 
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Enter Email" name="email" id="email" required>
