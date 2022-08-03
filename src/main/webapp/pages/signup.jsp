@@ -11,9 +11,32 @@
             font-family: 'Comfortaa', cursive;
         }
 
+        body::after {
+            background-repeat: no-repeat;
+
+            background-size: cover;
+
+            background-position: center center;
+
+            content: "";
+
+            filter: blur(2px);
+
+            position: absolute;
+
+            top: 0px;
+
+            left: 0px;
+
+            height: 100vh;
+
+            width: 100vw;
+
+            z-index: -1;
+        }
+
         .container {
             padding: 35px;
-            /*background-color: #20ff9f;*/
         }
 
         h1 {
@@ -110,5 +133,3 @@
 </form>
 </body>
 </html>
-
-<%--pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"--%>

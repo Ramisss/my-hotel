@@ -11,6 +11,32 @@
 
         }
 
+        body::after {
+            /*background-image: url("https://images.unsplash.com/photo-1444201983204-c43cbd584d93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");*/
+            background-image: url("/img/backgroundImage.jpg");
+            background-repeat: no-repeat;
+
+            background-size: cover;
+
+            background-position: center center;
+
+            content: "";
+
+            filter: blur(4px);
+
+            position: absolute;
+
+            top: 0px;
+
+            left: 0px;
+
+            height: 100vh;
+
+            width: 100vw;
+
+            z-index: -1;
+        }
+
         .login {
             width: 360px;
             padding: 8% 0 0;
@@ -74,15 +100,18 @@
 
 </head>
 <body>
-<h2>sign-in.jsp</h2>
 <div class="login">
     <div class="form">
         <form class="login-form" action="${pageContext.request.contextPath}/controller" method="post">
             <span class="material-icons">Log In</span>
+            <input type="hidden" name="command" value="sign_in">
             <input type="text" name="email" placeholder="email" required/>
             <input type="password" name="password" placeholder="password" required/>
-            <button type="submit">login</button>
+            <button type="submit" style="font-weight: normal;">login</button>
         </form>
+        <a href="../index.jsp">
+            <button type="button" style="font-weight: normal">Back to home page...</button>
+        </a>
     </div>
 </div>
 </body>

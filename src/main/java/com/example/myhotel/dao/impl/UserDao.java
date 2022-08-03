@@ -5,7 +5,6 @@ import com.example.myhotel.dao.Dao;
 import com.example.myhotel.entity.User;
 import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exception.DaoException;
-import com.example.myhotel.pool.ConnectionPool;
 import com.example.myhotel.pool.ConnectionTestPool;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
