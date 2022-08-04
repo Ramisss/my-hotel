@@ -39,7 +39,6 @@ public class HotelDao implements Dao<Integer, Hotel> {
     public Hotel save(Hotel entity) throws DaoException {
         try (Connection connection = ConnectionTestPool.get();
              PreparedStatement prepareStatement = connection.prepareStatement(SAVE_SQL);
-
         ) {
             prepareStatement.setString(1, entity.getName());
             prepareStatement.setString(1, entity.getAddress());
@@ -52,14 +51,14 @@ public class HotelDao implements Dao<Integer, Hotel> {
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
             generatedKeys.next();
 
-            entity.setId();
+            entity.setId(generatedKeys.getObject("id", Integer.class));
+            return entity;
 
 
         } catch (SQLException sqlException) {
             logger.log(Level.ERROR, "DRIVER NOT LOADED", sqlException);
             throw new DaoException(sqlException);
         }
-        return null;
     }
 
 

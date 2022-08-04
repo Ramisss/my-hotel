@@ -9,7 +9,7 @@ public enum CommandType {
     SIGN_IN(new SignInCommand()),
     DEFAULT(new DefaultCommand());
 
-    Command command;
+    private Command command;
 
     CommandType(Command command) {
         this.command = command;
@@ -30,8 +30,5 @@ public enum CommandType {
             return current.command;
         }
 
-
-//        CommandType commandType = CommandType.valueOf(commandStr.toUpperCase());
-//        return commandType.command;
     }
 }

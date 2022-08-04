@@ -92,6 +92,8 @@ public class UserDao implements Dao<Integer, User> {
                     "role_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+    public static final String GET_ROLE_BY_NAME_SQL = "select name from roles where name = ?";
+
     public User findByEmailAndPassword(String email, String password) throws DaoException {
         User user = null;
         try (
@@ -249,7 +251,6 @@ public class UserDao implements Dao<Integer, User> {
 //                Connection open = ConnectionPool.getInstance().getConnection();
                 PreparedStatement prepareStatement = open.prepareStatement(FIND_BY_LOGIN);
         ) {
-
             prepareStatement.setString(1, login);
 
             ResultSet resultSet = prepareStatement.executeQuery();
@@ -261,5 +262,21 @@ public class UserDao implements Dao<Integer, User> {
         }
 
         return user;
+    }
+
+    public Optional<Role> getRoleById(Integer id) {
+
+        try (Connection connection = ConnectionTestPool.get();
+             var prepareStatement = connection.prepareStatement(GET_ROLE_BY_NAME_SQL);
+        ) {
+            ResultSet resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myhotel.service;
+package com.example.myhotel.service.impl;
 
 
 import com.example.myhotel.dao.impl.UserDao;
@@ -7,6 +7,7 @@ import com.example.myhotel.entity.User;
 import com.example.myhotel.exception.DaoException;
 import com.example.myhotel.exception.ServiceException;
 import com.example.myhotel.mapper.UserMapper;
+import com.example.myhotel.service.UserService;
 import com.example.myhotel.validation.RegisterValidation;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -86,6 +87,17 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+
+    public User getByEmail(String email) throws ServiceException {
+        User user;
+        try {
+            user = userDao.findByEmail(email).get();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "error in UserServiceImpl method getByEmail ");
+            throw new ServiceException(e);
+        }
+        return user;
+    }
 
 }
 

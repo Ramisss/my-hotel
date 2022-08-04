@@ -11,7 +11,6 @@
     }
 
     body::after {
-        /*background-image: url("https://images.unsplash.com/photo-1444201983204-c43cbd584d93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");*/
         background-image: url("img/backgroundImage.jpg");
 
         background-repeat: no-repeat;
@@ -37,19 +36,6 @@
         z-index: -1;
     }
 
-
-    /*button {*/
-    /*    display: block;*/
-    /*    !*float: right;*!*/
-    /*    background-color: #04AA6D;*/
-    /*    color: white;*/
-    /*    padding: 14px 20px;*/
-    /*    margin: 8px 0;*/
-    /*    border: none;*/
-    /*    cursor: pointer;*/
-    /*    width: 30%;*/
-    /*    opacity: 0.9;*/
-    /*}*/
 
     button {
         font-family: 'Comfortaa', cursive;
@@ -84,16 +70,13 @@
 <h2 style="font-weight: bold; font-family: 'Comfortaa', cursive;font-style: italic">to the TASHKENT HOTEL </h2>
 <br/>
 
-<%--<form action="${pageContext.request.contextPath}/controller" method="post">--%>
-<%--<a href="/login" style="color: darkcyan"> SIGN IN </a>--%>
 <button type="submit" class="cancelbtn">
     <a href="${pageContext.request.contextPath}/pages/signup.jsp"> SIGN UP </a>
 </button>
 <button type="button" class="cancelbtn">
     <a href="${pageContext.request.contextPath}/pages/signin.jsp"> SIGN IN </a>
 </button>
-<%--</form>--%>
+
 </body>
 </html>
 
-<%--/my_hotel_war_exploded--%>

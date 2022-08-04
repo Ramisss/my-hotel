@@ -35,7 +35,7 @@ public class HomeController extends HttpServlet {
         String strCommand = request.getParameter(RequestParameter.COMMAND);
         logger.log(Level.INFO, "command is: " + strCommand);
         Command command = CommandType.define(strCommand);
-        logger.log(Level.INFO, "CommandType.define---->>>>>" + command);
+        logger.log(Level.INFO, "CommandType.define-->>" + command);
         Router router;
         try {
             router = command.execute(request);

@@ -1,7 +1,7 @@
 //package com.example.myhotel.controller;
 //
 //import com.example.myhotel.dto.UserDto;
-//import com.example.myhotel.service.UserServiceImpl;
+//import com.example.myhotel.service.impl.UserServiceImpl;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 //import jakarta.servlet.http.HttpServlet;
