@@ -11,6 +11,10 @@
     <title>ADMIN PAGE</title>
 </head>
 <body>
-<h2>Hello ADMIN !!</h2>
+<h2>Hello ADMIN !!
+    ${user_name}
+</h2>
+<button>Add Hotel</button>
+<button>Add Room</button>
 </body>
 </html>

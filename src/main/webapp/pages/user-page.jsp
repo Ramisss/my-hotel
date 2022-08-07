@@ -17,7 +17,11 @@
 </head>
 <body>
 
-<h1>Choose Rooms!!
+<h1>Choose Rooms!! ${user_name}
 </h1>
+<card>
+check-in <br>
+    check-out <br>
+</card>
 </body>
 </html>

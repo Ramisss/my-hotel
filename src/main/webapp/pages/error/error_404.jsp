@@ -5,12 +5,13 @@
   Time: 12:55
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isErrorPage="true" contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>404</title>
 </head>
 <body>
-404
+<h1 style="color: #cc0000" >404</h1>
+<h2>Not Found.</h2>
 </body>
 </html>

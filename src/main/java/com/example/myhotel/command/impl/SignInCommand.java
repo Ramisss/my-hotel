@@ -37,15 +37,17 @@ public class SignInCommand implements Command {
 
                 if ("ROLE_USER".equals(role)) {
                     logger.log(Level.INFO, "email and password is correct. " + user.getRole().name());
+                    request.setAttribute("user_name","bdfkgjhdflkghdkfghkldfghkdfhglkdf");
                     router = new Router(PagePath.USER_PAGE, Router.Type.REDIRECT);
                 } else if ("ROLE_ADMIN".equals(role)) {
                     logger.log(Level.INFO, "email and password is correct. " + user.getRole().name());
-                    router = new Router(PagePath.ADMIN_PAGE, Router.Type.REDIRECT);
+                    request.setAttribute("user_name",user.getFirstName());
+                    router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
                 }
 
             } else {
                 request.setAttribute("login_error", "Login or password incorrect! ");
-                router = new Router(PagePath.HOME_PAGE, Router.Type.REDIRECT);
+                router = new Router(PagePath.SIGN_IN, Router.Type.FORWARD);
             }
         } catch (ServiceException e) {
             throw new CommandException(e);

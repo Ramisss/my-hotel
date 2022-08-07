@@ -112,6 +112,7 @@
         <a href="../index.jsp">
             <button type="button" style="font-weight: normal">Back to home page...</button>
         </a>
+    <h3 style="text-align: center;color: #cc0000">${login_error}</h3>
     </div>
 </div>
 </body>

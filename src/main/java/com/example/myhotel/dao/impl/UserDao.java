@@ -216,7 +216,7 @@ public class UserDao implements Dao<Integer, User> {
             logger.log(Level.ERROR, "can not connect to database", sqlException);
             throw new DaoException(sqlException);
         }
-        return Optional.ofNullable(user);
+        return Optional.empty();
 
     }
 
