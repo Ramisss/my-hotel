@@ -228,6 +228,7 @@ public class UserDao implements Dao<Integer, User> {
 
         logger.log(Level.INFO, roleId + "from DB UserDao method findByEmail");
 
+//        BigI
         return new User(
                 resultSet.getObject("id", Integer.class),
                 resultSet.getObject("first_name", String.class),
@@ -236,7 +237,9 @@ public class UserDao implements Dao<Integer, User> {
                 resultSet.getObject("phone_number", String.class),
                 resultSet.getObject("e_mail", String.class),
                 resultSet.getObject("login", String.class),
-                Role.valueOf("ROLE_USER")); // TODO check
+                Role.find(resultSet.getObject("role_id", Integer.class)));
+//                resultSet.getObject("role_id",Integer.class);
+//                Role.valueOf("ROLE_USER")); // TODO check
     }
 
     private boolean checkRole(int roleId) {
