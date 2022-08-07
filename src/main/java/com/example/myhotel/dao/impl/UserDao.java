@@ -131,7 +131,6 @@ public class UserDao implements Dao<Integer, User> {
             while (resultSet.next()) {
                 userList.add(buildUser(resultSet));
             }
-
             return userList;
 
         } catch (SQLException sqlException) {

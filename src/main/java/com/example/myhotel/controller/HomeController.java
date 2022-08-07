@@ -39,9 +39,7 @@ public class HomeController extends HttpServlet {
         Router router;
         try {
             router = command.execute(request);
-
             logger.log(Level.INFO, "moving to page: " + router.getPage());
-
             if (router.getActionType() == Router.Type.FORWARD) {
                 request.getRequestDispatcher(router.getPage()).forward(request, response);
             } else {

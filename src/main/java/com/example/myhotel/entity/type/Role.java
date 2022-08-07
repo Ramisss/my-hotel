@@ -6,9 +6,9 @@ public enum Role {
     ROLE_ADMIN,
     ROLE_USER;
 
-    public static Role find(Integer role) {
+    public static Role find(Integer id) {
         return Arrays.stream(values())
-                .filter(it -> it.ordinal()==(role))
+                .filter(it -> it.ordinal()==(id))
                 .findFirst().get();
     }
 
