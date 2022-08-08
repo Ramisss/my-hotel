@@ -99,6 +99,10 @@
 <body>
 <%----%>
 
+<button type="button" class="registerbtn">
+    <a href="${pageContext.request.contextPath}/pages/signin.jsp"> SIGN IN </a>
+</button>
+
 <form action="${pageContext.request.contextPath}/controller" method="post">
     <input type="hidden" name="command" value="add_hotel">
     <div class="container">
@@ -125,11 +129,10 @@
         <button type="submit" class="registerbtn">Add Hotel</button>
 
 
-        <%--        ERROR--%>
-<%--        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>  --%>
 </form>
 
 <h2 style="color: greenyellow;text-align: center">${success_msg}</h2>
+<h2 style="color: red;text-align: center">${error_msg}</h2>
 
 <%--ADD ROOM--%>
 <%----%>

@@ -11,6 +11,7 @@ import com.example.myhotel.service.HotelService;
 import com.example.myhotel.service.impl.HotelServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,7 +31,6 @@ public class AddHotelCommand implements Command {
         String email = request.getParameter(RequestParameter.HOTEL_EMAIL);
 
         Router router = null;
-
         HotelDto hotelDto = HotelDto.builder()
                 .name(name)
                 .address(address)
@@ -39,11 +39,15 @@ public class AddHotelCommand implements Command {
                 .email(email)
                 .build();
 
-        if (hotelService.add(hotelDto)) {
-            request.setAttribute("success_msg","New hotel saved to DB with name " + hotelDto.getName());
-            return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
-        }
+        Object userRole = httpSession.getAttribute("userRole");
+        logger.log(Level.INFO,userRole);
 
-        return null;
+        if (hotelService.add(hotelDto)) {
+            request.setAttribute("success_msg", "New hotel saved to DB with name " + hotelDto.getName());
+//            return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
+        } else
+            request.setAttribute("error_msg", "Email or phone  number not valid."
+                    + hotelDto.getEmail() + hotelDto.getPhoneNumber());
+        return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
     }
 }

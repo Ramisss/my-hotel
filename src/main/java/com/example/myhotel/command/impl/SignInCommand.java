@@ -37,7 +37,7 @@ public class SignInCommand implements Command {
 
                 if ("ROLE_USER".equals(role)) {
                     logger.log(Level.INFO, "email and password is correct. " + user.getRole().name());
-                    request.setAttribute("user_name","bdfkgjhdflkghdkfghkldfghkdfhglkdf");
+                    request.setAttribute("user_name"," ");
                     router = new Router(PagePath.USER_PAGE, Router.Type.REDIRECT);
                 } else if ("ROLE_ADMIN".equals(role)) {
                     logger.log(Level.INFO, "email and password is correct. " + user.getRole().name());
