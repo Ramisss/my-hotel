@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "error in UserServiceImpl method checkUserByEmail");
             throw new ServiceException(e);
         }
-        return !optionalUser.isEmpty();
+        return optionalUser.isEmpty();
     }
 
     @Override

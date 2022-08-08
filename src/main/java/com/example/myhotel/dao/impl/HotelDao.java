@@ -8,10 +8,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,13 +35,13 @@ public class HotelDao implements Dao<Integer, Hotel> {
     @Override
     public Hotel save(Hotel entity) throws DaoException {
         try (Connection connection = ConnectionTestPool.get();
-             PreparedStatement prepareStatement = connection.prepareStatement(SAVE_SQL);
+             PreparedStatement prepareStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);
         ) {
             prepareStatement.setString(1, entity.getName());
-            prepareStatement.setString(1, entity.getAddress());
-            prepareStatement.setString(1, entity.getCountry());
-            prepareStatement.setString(1, entity.getPhoneNumber());
-            prepareStatement.setString(1, entity.getEmail());
+            prepareStatement.setString(2, entity.getAddress());
+            prepareStatement.setString(3, entity.getCountry());
+            prepareStatement.setString(4, entity.getPhoneNumber());
+            prepareStatement.setString(5, entity.getEmail());
 
             prepareStatement.executeUpdate();
 

@@ -223,11 +223,9 @@ public class UserDao implements Dao<Integer, User> {
     //    TODO This method for ROLE_USER
     private User buildUser(ResultSet resultSet) throws SQLException {
         int roleId = resultSet.getObject(8, Integer.class);
-        checkRole(roleId);
 
-        logger.log(Level.INFO, roleId + "from DB UserDao method findByEmail");
+        logger.log(Level.INFO, "role_id = "+ roleId);
 
-//        BigI
         return new User(
                 resultSet.getObject("id", Integer.class),
                 resultSet.getObject("first_name", String.class),
@@ -241,10 +239,7 @@ public class UserDao implements Dao<Integer, User> {
 //                Role.valueOf("ROLE_USER")); // TODO check
     }
 
-    private boolean checkRole(int roleId) {
-        if (roleId == 1) return true;
-        return false;
-    }
+
 
     public User findByLogin(String login) throws DaoException {
         User user = null;

@@ -3,7 +3,8 @@
 <html>
 <style>
     * {
-        box-sizing: border-box
+        box-sizing: border-box;
+        font-family: 'Comfortaa', cursive;
     }
 
     body {
@@ -77,6 +78,7 @@
     <a href="${pageContext.request.contextPath}/pages/signin.jsp"> SIGN IN </a>
 </button>
 
+<%--<h2 style="color: #cc0000">Please enter valid email or phone number.</h2>--%>
 </body>
 </html>
 

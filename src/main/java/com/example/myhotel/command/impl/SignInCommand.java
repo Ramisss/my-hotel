@@ -42,7 +42,7 @@ public class SignInCommand implements Command {
                 } else if ("ROLE_ADMIN".equals(role)) {
                     logger.log(Level.INFO, "email and password is correct. " + user.getRole().name());
                     request.setAttribute("user_name",user.getFirstName());
-                    router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
+                    router = new Router(PagePath.ADMIN_PAGE, Router.Type.REDIRECT);
                 }
 
             } else {

@@ -1,6 +1,7 @@
 package com.example.myhotel.command;
 
-import com.example.myhotel.command.impl.AddHotel;
+import com.example.myhotel.command.impl.admin.AddHotelCommand;
+import com.example.myhotel.command.impl.admin.AddHotel;
 import com.example.myhotel.command.impl.DefaultCommand;
 import com.example.myhotel.command.impl.SignInCommand;
 import com.example.myhotel.command.impl.SignUpCommand;
@@ -8,7 +9,10 @@ import com.example.myhotel.command.impl.SignUpCommand;
 public enum CommandType {
     SIGN_UP(new SignUpCommand()),
     SIGN_IN(new SignInCommand()),
-    ADD_HOTEL(new AddHotel()),
+//    ADMIN
+    ADD_HOTEL(new AddHotelCommand()),
+
+
     DEFAULT(new DefaultCommand());
 
     private Command command;

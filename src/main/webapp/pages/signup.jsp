@@ -130,6 +130,10 @@
         <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
         <button type="submit" class="registerbtn">Register</button>
+
+<%--        ERROR--%>
+        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>
+
 </form>
 </body>
 </html>
