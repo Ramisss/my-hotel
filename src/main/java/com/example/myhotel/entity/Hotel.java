@@ -1,10 +1,10 @@
 package com.example.myhotel.entity;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Data
+@Builder
 public class Hotel {
 
     private Integer id;

@@ -5,7 +5,7 @@ import com.example.myhotel.exception.ServiceException;
 
 public interface HotelService {
 
-    boolean create(HotelDto hotelDto) throws ServiceException;
+    boolean add(HotelDto hotelDto) throws ServiceException;
 
     boolean update(HotelDto hotelDto) throws ServiceException;
 

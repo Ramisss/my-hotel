@@ -124,9 +124,12 @@
 
         <button type="submit" class="registerbtn">Add Hotel</button>
 
+
         <%--        ERROR--%>
 <%--        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>  --%>
 </form>
+
+<h2 style="color: greenyellow;text-align: center">${success_msg}</h2>
 
 <%--ADD ROOM--%>
 <%----%>
