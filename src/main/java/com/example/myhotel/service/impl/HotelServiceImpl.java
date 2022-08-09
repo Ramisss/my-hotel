@@ -70,7 +70,7 @@ public class HotelServiceImpl implements HotelService {
         try {
             return hotelDao.findById(hotelId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Hotel was not found by this ID ==" + hotelId, e);
+            logger.log(Level.ERROR, "Hotel was not found by this ID ==" + hotelId);
             throw new ServiceException(e);
         }
     }

@@ -73,25 +73,28 @@ public class HotelDao implements Dao<Integer, Hotel> {
         return null;
     }
 
+
     @Override
     public Optional<Hotel> findById(Integer id) throws DaoException {
-        return Optional.empty();
-    }
-
-    public Optional<Hotel> findById(int id) throws DaoException {
         Connection connection = ConnectionTestPool.get();
         try {
             PreparedStatement prepareStatement = connection.prepareStatement(FIND_BY_ID_SQL);
-            prepareStatement.setInt(1, id);
+            prepareStatement.setObject(1, id);
             ResultSet resultSet = prepareStatement.executeQuery();
             Hotel hotel = new Hotel();
 
             while (resultSet.next()) {
-                hotel = buildHotel(resultSet);
+                hotel.setName(resultSet.getString("name"));
+                hotel.setAddress(resultSet.getString("address"));
+                hotel.setCountry(resultSet.getString("country"));
+                hotel.setPhoneNumber(resultSet.getString("phone_number"));
+                hotel.setEmail(resultSet.getString("e_mail"));
+                hotel.setId(resultSet.getInt("id"));
+//                hotel = buildHotel(resultSet);
                 return Optional.of(hotel);
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "hotelDao error (findById-method)" + e);
+            logger.log(Level.ERROR, "hotelDao error (findById-method)");
             throw new DaoException(e);
         }
 
@@ -111,12 +114,12 @@ public class HotelDao implements Dao<Integer, Hotel> {
 
     private Hotel buildHotel(ResultSet resultSet) throws SQLException {
         return new Hotel(
-                resultSet.getObject("id", Integer.class),
-                resultSet.getObject("name", String.class),
-                resultSet.getObject("address", String.class),
-                resultSet.getObject("country", String.class),
-                resultSet.getObject("phone_number", String.class),
-                resultSet.getObject("e_mail", String.class));
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getString("address"),
+                resultSet.getString("country"),
+                resultSet.getString("phone_number"),
+                resultSet.getString("e_mail"));
     }
 
 }
