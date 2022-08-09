@@ -202,7 +202,6 @@ public class UserDao implements Dao<Integer, User> {
     public Optional<User> findByEmail(String email) throws DaoException {
         User user = new User();
         try (
-//                Connection connection = ConnectionPool.getInstance().getConnection();
                 Connection connection = ConnectionTestPool.get();
                 var prepareStatement = connection.prepareStatement(FIND_BY_EMAIL_SQL)) {
             prepareStatement.setString(1, email);
@@ -222,10 +221,6 @@ public class UserDao implements Dao<Integer, User> {
 
     //    TODO This method for ROLE_USER
     private User buildUser(ResultSet resultSet) throws SQLException {
-        int roleId = resultSet.getObject(8, Integer.class);
-
-        logger.log(Level.INFO, "role_id = "+ roleId);
-
         return new User(
                 resultSet.getObject("id", Integer.class),
                 resultSet.getObject("first_name", String.class),

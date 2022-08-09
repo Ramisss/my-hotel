@@ -58,16 +58,17 @@ public class HotelDao implements Dao<Integer, Hotel> {
         }
     }
 
+    @Override
+    public Optional<Hotel> findById(Integer id) throws DaoException {
+
+        return Optional.empty();
+    }
 
     @Override
     public List<Hotel> findAll() throws DaoException {
         return null;
     }
 
-    @Override
-    public Optional<Hotel> findById(Integer id) throws DaoException {
-        return Optional.empty();
-    }
 
     @Override
     public boolean delete(Integer id) throws DaoException {

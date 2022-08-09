@@ -100,7 +100,7 @@
 <%----%>
 
 <button type="button" class="registerbtn">
-    <a href="${pageContext.request.contextPath}/pages/signin.jsp"> SIGN IN </a>
+    <a href="${pageContext.request.contextPath}/pages/admin-dashboard.jsp"> SIGN IN </a>
 </button>
 
 <form action="${pageContext.request.contextPath}/controller" method="post">

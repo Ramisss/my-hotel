@@ -10,8 +10,11 @@ import com.example.myhotel.service.HotelService;
 import com.example.myhotel.validation.RegisterValidation;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE) // create private constructor
 public class HotelServiceImpl implements HotelService {
@@ -27,18 +30,18 @@ public class HotelServiceImpl implements HotelService {
 
 
     @Override
-    public boolean add(HotelDto hotelDto) throws ServiceException {
+    public Hotel add(HotelDto hotelDto) throws ServiceException {
+        Hotel hotel = null;
         if (validatePhoneAndEmail(hotelDto.getEmail(), hotelDto.getPhoneNumber())) {
-            Hotel hotel = hotelMapper.mapFrom(hotelDto);
+
+            hotel = hotelMapper.mapFrom(hotelDto);
             try {
-                hotelDao.save(hotel);
-                return true;
+                hotel = hotelDao.save(hotel);
             } catch (DaoException e) {
                 throw new ServiceException(e);
             }
         }
-
-        return false;
+        return hotel;
     }
 
     @Override
@@ -57,5 +60,18 @@ public class HotelServiceImpl implements HotelService {
                 registerValidation.checkPhoneNumber(phone))
             return true;
         return false;
+    }
+
+    public void getHotel() {
+
+    }
+
+    public Optional<Hotel> findById(Integer hotelId) throws ServiceException {
+        try {
+            return hotelDao.findById(hotelId);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Hotel was not found by this ID ==" + hotelId, e);
+            throw new ServiceException(e);
+        }
     }
 }

@@ -5,9 +5,9 @@ import com.example.myhotel.controller.PagePath;
 import com.example.myhotel.controller.RequestParameter;
 import com.example.myhotel.controller.Router;
 import com.example.myhotel.dto.HotelDto;
+import com.example.myhotel.entity.Hotel;
 import com.example.myhotel.exception.CommandException;
 import com.example.myhotel.exception.ServiceException;
-import com.example.myhotel.service.HotelService;
 import com.example.myhotel.service.impl.HotelServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class AddHotelCommand implements Command {
 
     public static final Logger logger = LogManager.getLogger();
-    public final HotelService hotelService = HotelServiceImpl.getInstance();
+    public final HotelServiceImpl hotelService = HotelServiceImpl.getInstance();
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException, ServiceException {
@@ -42,8 +42,15 @@ public class AddHotelCommand implements Command {
         Object userRole = httpSession.getAttribute("userRole");
         logger.log(Level.INFO,userRole);
 
-        if (hotelService.add(hotelDto)) {
+        Hotel addHotel = hotelService.add(hotelDto);
+        Integer hotelId = addHotel.getId();
+        httpSession.setAttribute("hotelId",hotelId);
+        hotelService.findById(hotelId)
+
+        if () {
             request.setAttribute("success_msg", "New hotel saved to DB with name " + hotelDto.getName());
+            hotelService.getHotel();
+
 //            return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
         } else
             request.setAttribute("error_msg", "Email or phone  number not valid."
