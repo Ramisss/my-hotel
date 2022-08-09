@@ -6,6 +6,7 @@ import com.example.myhotel.controller.RequestParameter;
 import com.example.myhotel.controller.Router;
 import com.example.myhotel.dto.HotelDto;
 import com.example.myhotel.entity.Hotel;
+import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exception.CommandException;
 import com.example.myhotel.exception.ServiceException;
 import com.example.myhotel.service.impl.HotelServiceImpl;
@@ -15,13 +16,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Optional;
+
 public class AddHotelCommand implements Command {
 
     public static final Logger logger = LogManager.getLogger();
     public final HotelServiceImpl hotelService = HotelServiceImpl.getInstance();
 
     @Override
-    public Router execute(HttpServletRequest request) throws CommandException, ServiceException {
+    public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession httpSession = request.getSession();
 
         String name = request.getParameter(RequestParameter.HOTEL_NAME);
@@ -40,21 +43,33 @@ public class AddHotelCommand implements Command {
                 .build();
 
         Object userRole = httpSession.getAttribute("userRole");
-        logger.log(Level.INFO,userRole);
+        logger.log(Level.INFO, userRole);
+        if (userRole == null) {
+            userRole = new Object();
+        }
+        logger.log(Level.INFO, Role.ROLE_ADMIN);
 
-        Hotel addHotel = hotelService.add(hotelDto);
-        Integer hotelId = addHotel.getId();
-        httpSession.setAttribute("hotelId",hotelId);
-        hotelService.findById(hotelId)
+        try {
+            if (!(userRole.equals(Role.ROLE_ADMIN.toString()))) {
+                return router = new Router(PagePath.HOME_PAGE, Router.Type.REDIRECT);
+            }
+            Hotel addHotel = hotelService.add(hotelDto);
+            Integer hotelId = addHotel.getId();
+            httpSession.setAttribute("hotelId", hotelId);
+            Optional<Hotel> optionalHotel = hotelService.findById(hotelId);
 
-        if () {
-            request.setAttribute("success_msg", "New hotel saved to DB with name " + hotelDto.getName());
-            hotelService.getHotel();
+            if (optionalHotel.isPresent()) {
+                request.setAttribute("success_msg", "New hotel saved to DB with name " + hotelDto.getName());
+                hotelService.getHotel();
 
 //            return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
-        } else
-            request.setAttribute("error_msg", "Email or phone  number not valid."
-                    + hotelDto.getEmail() + hotelDto.getPhoneNumber());
+            }
+        } catch (ServiceException e) {
+            logger.log(Level.ERROR, "Hotel not saved", e);
+            throw new CommandException(e);
+        }
+        request.setAttribute("error_msg", "Email or phone  number not valid."
+                + hotelDto.getEmail() + hotelDto.getPhoneNumber());
         return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
     }
 }
