@@ -10,7 +10,6 @@ public class RoomDto {
     Integer userId;
     String name;
     Short maxPerson;
-    Boolean lowSeasonRate;
-    Boolean highSessionRate;
+    boolean isOrdered;
     Integer hotelId;
 }

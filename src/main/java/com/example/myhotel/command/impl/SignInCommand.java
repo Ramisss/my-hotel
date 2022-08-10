@@ -31,6 +31,7 @@ public class SignInCommand implements Command {
             if (userServiceImpl.authEmailAndPassword(email, password)) {
                 user = userServiceImpl.getByEmail(email);
                 httpSession.setAttribute("userRole",user.getRole().name());
+                httpSession.setAttribute("userId",user.getId());
                 logger.log(Level.INFO,"user role from session"+httpSession.getAttribute("userRole"));
 
                 String role = user.getRole().name();
