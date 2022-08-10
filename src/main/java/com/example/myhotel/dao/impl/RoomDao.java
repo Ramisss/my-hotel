@@ -22,14 +22,7 @@ public class RoomDao implements Dao<Integer, Room> {
     public static final Logger logger = LogManager.getLogger();
 
     public static final RoomDao INSTANCE = new RoomDao();
-    private static final String SAVE_SQL = "insert into" +
-            " room(id," +
-            " user_id," +
-            " name," +
-            " max_person," +
-            " hotel_id," +
-            "is_ordered )" +
-            " values (?,?,?,?,?,?)";
+    private static final String SAVE_SQL = "insert into room(user_id, name, max_person, hotel_id, is_ordered) VALUES(?,?,?,?,?) ";
 
     public static RoomDao getInstance() {
         return INSTANCE;
@@ -62,7 +55,7 @@ public class RoomDao implements Dao<Integer, Room> {
             var prepareStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);
 
             if (entity.getHotelId() == null || entity.getUserId() == null) {
-                logger.log(Level.ERROR,"User Id or Hotel Id is null (RoomDao-method save)");
+                logger.log(Level.ERROR, "User Id or Hotel Id is null (RoomDao-method save)");
                 throw new DaoException("UserId or Hotel Id is null");
             }
 
@@ -73,10 +66,12 @@ public class RoomDao implements Dao<Integer, Room> {
             prepareStatement.setObject(5, entity.isOrdered());
 
             prepareStatement.executeUpdate();
-
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
             generatedKeys.next();
 
+//            ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
+//            generatedKeys.next();
+//
             entity.setId(generatedKeys.getObject("id", Integer.class));
             return entity;
 

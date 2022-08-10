@@ -1,6 +1,7 @@
 package com.example.myhotel.command.impl.admin;
 
 import com.example.myhotel.command.Command;
+import com.example.myhotel.controller.PagePath;
 import com.example.myhotel.controller.RequestParameter;
 import com.example.myhotel.controller.Router;
 import com.example.myhotel.dto.RoomDto;
@@ -24,6 +25,8 @@ public class AddRoomCommand implements Command {
         Object userId = httpSession.getAttribute("userId");
 
 
+        Router router =null;
+
         String roomName = request.getParameter(RequestParameter.ROOM_NAME);
         String maxPerson = request.getParameter(RequestParameter.MAX_PERSON);
         Short paceToShort = Short.valueOf(maxPerson);
@@ -39,6 +42,7 @@ public class AddRoomCommand implements Command {
         Room add = roomService.add(roomDto);
 
 
-        return null;
+        return router=new Router(PagePath.ADMIN_PAGE,Router.Type.FORWARD);
     }
+
 }

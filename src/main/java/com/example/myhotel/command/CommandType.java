@@ -9,7 +9,7 @@ import com.example.myhotel.command.impl.admin.AddRoomCommand;
 public enum CommandType {
     SIGN_UP(new SignUpCommand()),
     SIGN_IN(new SignInCommand()),
-//    ADMIN
+    //    ADMIN
     ADD_HOTEL(new AddHotelCommand()),
     ADD_ROOM(new AddRoomCommand()),
 
@@ -36,6 +36,5 @@ public enum CommandType {
             current = CommandType.DEFAULT;
             return current.command;
         }
-
     }
 }
