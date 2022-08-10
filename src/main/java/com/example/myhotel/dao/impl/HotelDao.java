@@ -34,6 +34,7 @@ public class HotelDao implements Dao<Integer, Hotel> {
             "VALUES(?,?,?,?,?) ";
 
     public static final String FIND_BY_ID_SQL = "select " +
+            "id,"+
             "name," +
             "address," +
             "country," +

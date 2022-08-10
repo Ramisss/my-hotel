@@ -16,5 +16,9 @@ public final class RequestParameter {
     public static final String HOTEL_PHONE= "phone";
     public static final String HOTEL_EMAIL= "email";
 
+    public static final String ROOM_NAME = "roomName";
+    public static final String MAX_PERSON = "maxPerson";
+    public static final String RATE = "rate";
+
 
 }

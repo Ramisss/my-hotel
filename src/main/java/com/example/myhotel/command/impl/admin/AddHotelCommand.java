@@ -5,6 +5,7 @@ import com.example.myhotel.controller.PagePath;
 import com.example.myhotel.controller.RequestParameter;
 import com.example.myhotel.controller.Router;
 import com.example.myhotel.dto.HotelDto;
+import com.example.myhotel.dto.RoomDto;
 import com.example.myhotel.entity.Hotel;
 import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exception.CommandException;
@@ -32,6 +33,11 @@ public class AddHotelCommand implements Command {
         String country = request.getParameter(RequestParameter.HOTEL_COUNTRY);
         String phone = request.getParameter(RequestParameter.HOTEL_PHONE);
         String email = request.getParameter(RequestParameter.HOTEL_EMAIL);
+//ROOM
+        String roomName = request.getParameter(RequestParameter.ROOM_NAME);
+        String maxPerson = request.getParameter(RequestParameter.MAX_PERSON);
+        String rate = request.getParameter(RequestParameter.RATE);
+        Short paceToShort = Short.valueOf(maxPerson);
 
         Router router = null;
         HotelDto hotelDto = HotelDto.builder()
@@ -62,7 +68,16 @@ public class AddHotelCommand implements Command {
                 request.setAttribute("success_msg", "New hotel saved to DB with name " + hotelDto.getName());
                 hotelService.getHotel();
 
-//            return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
+
+                RoomDto roomDto = RoomDto.builder()
+                        .name(roomName)
+                        .maxPerson(paceToShort)
+//                        .highSessionRate()
+//                        .lowSeasonRate()
+                        .build();
+
+
+                return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
             }
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Hotel not saved", e);

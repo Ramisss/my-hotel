@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 04.08.2022
-  Time: 12:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <style>
@@ -147,17 +141,24 @@
         <label> <b>Max person:</b> </label>
         <input type="text" name="maxPerson" placeholder="only number" required/>
 
-        <label> <b>Rate:</b> </label>
-        <input type="text" name="rate" placeholder="low or high rate" required />
+        <label> <b>Rate-high:</b> </label>
+        <input type="radio" name="rate" placeholder="high rate" required/>
+        <label> <b>Rate-low:</b> </label>
+        <input type="radio" name="rate" placeholder="low rate" required/>
+
+        <label for="role">Role:
+            <select name="role" id="role">
+                <c:forEach var="role" items="${requestScope.roles}">
+                    <option value="${role}">${role}</option>
+                </c:forEach>
+            </select>
+        </label><br>
 
 
-
-
-
-        <button type="submit" class="registerbtn">Add Room </button>
+        <button type="submit" class="registerbtn">Add Room</button>
 
         <%--        ERROR--%>
-<%--        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>--%>
+        <%--        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>--%>
 </form>
 <%----%>
 
