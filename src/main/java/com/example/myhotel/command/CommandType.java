@@ -4,12 +4,14 @@ import com.example.myhotel.command.impl.DefaultCommand;
 import com.example.myhotel.command.impl.SignInCommand;
 import com.example.myhotel.command.impl.SignUpCommand;
 import com.example.myhotel.command.impl.admin.AddHotelCommand;
+import com.example.myhotel.command.impl.admin.AddRoomCommand;
 
 public enum CommandType {
     SIGN_UP(new SignUpCommand()),
     SIGN_IN(new SignInCommand()),
 //    ADMIN
     ADD_HOTEL(new AddHotelCommand()),
+    ADD_ROOM(new AddRoomCommand()),
 
 
     DEFAULT(new DefaultCommand());

@@ -34,10 +34,7 @@ public class AddHotelCommand implements Command {
         String phone = request.getParameter(RequestParameter.HOTEL_PHONE);
         String email = request.getParameter(RequestParameter.HOTEL_EMAIL);
 //ROOM
-        String roomName = request.getParameter(RequestParameter.ROOM_NAME);
-        String maxPerson = request.getParameter(RequestParameter.MAX_PERSON);
-        String rate = request.getParameter(RequestParameter.RATE);
-        Short paceToShort = Short.valueOf(maxPerson);
+
 
         Router router = null;
         HotelDto hotelDto = HotelDto.builder()
@@ -67,15 +64,6 @@ public class AddHotelCommand implements Command {
             if (optionalHotel.isPresent()) {
                 request.setAttribute("success_msg", "New hotel saved to DB with name " + hotelDto.getName());
                 hotelService.getHotel();
-
-
-                RoomDto roomDto = RoomDto.builder()
-                        .name(roomName)
-                        .maxPerson(paceToShort)
-//                        .highSessionRate()
-//                        .lowSeasonRate()
-                        .build();
-
 
                 return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
             }

@@ -139,23 +139,20 @@
         <input type="text" name="roomName" placeholder="Name" size="15" required/>
 
         <label> <b>Max person:</b> </label>
-        <input type="text" name="maxPerson" placeholder="only number" required/>
-
-        <label> <b>Rate-high:</b> </label>
-        <input type="radio" name="rate" placeholder="high rate" required/>
-        <label> <b>Rate-low:</b> </label>
-        <input type="radio" name="rate" placeholder="low rate" required/>
-
-        <label for="role">Role:
-            <select name="role" id="role">
-                <c:forEach var="role" items="${requestScope.roles}">
-                    <option value="${role}">${role}</option>
-                </c:forEach>
-            </select>
-        </label><br>
+        <input type="number" name="maxPerson" min="1" max="4" placeholder="0" required/>
 
 
-        <button type="submit" class="registerbtn">Add Room</button>
+
+<%--        <label for="role">Role:--%>
+<%--            <select name="role" id="role">--%>
+<%--                <c:forEach var="role" items="${requestScope.roles}">--%>
+<%--                    <option value="${role}">${role}</option>--%>
+<%--                </c:forEach>--%>
+<%--            </select>--%>
+<%--        </label><br>--%>
+
+
+        <button type="submit" class="registerbtn" style="margin-top:10px">Add Room</button>
 
         <%--        ERROR--%>
         <%--        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>--%>
