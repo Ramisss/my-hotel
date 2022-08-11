@@ -141,7 +141,7 @@
         <label> <b>Room name:</b> </label>
         <input type="text" name="roomName" placeholder="Name" size="15" required/>
 
-        <label > <b>Room number:</b> </label>
+        <label> <b>Room number:</b> </label>
         <input type="number" name="maxPerson" min="1" placeholder="0" required/><br>
 
 
@@ -149,14 +149,13 @@
         <input type="number" name="maxPerson" min="1" max="4" placeholder="0" required/>
 
 
-
-<%--        <label for="role">Role:--%>
-<%--            <select name="role" id="role">--%>
-<%--                <c:forEach var="role" items="${requestScope.roles}">--%>
-<%--                    <option value="${role}">${role}</option>--%>
-<%--                </c:forEach>--%>
-<%--            </select>--%>
-<%--        </label><br>--%>
+        <%--        <label for="role">Role:--%>
+        <%--            <select name="role" id="role">--%>
+        <%--                <c:forEach var="role" items="${requestScope.roles}">--%>
+        <%--                    <option value="${role}">${role}</option>--%>
+        <%--                </c:forEach>--%>
+        <%--            </select>--%>
+        <%--        </label><br>--%>
 
 
         <button type="submit" class="registerbtn" style="margin-top:10px">Add Room</button>
@@ -166,8 +165,6 @@
 </form>
 <%----%>
 
-<h2 style="color: #e4ffc8; text-align: center">Hello ${user_name} !!
-
-</h2>
+<h2 style="color: greenyellow; text-align: center"> ${success_msg} !!</h2>
 </body>
 </html>

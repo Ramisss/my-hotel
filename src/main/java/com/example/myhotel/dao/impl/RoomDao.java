@@ -72,7 +72,7 @@ public class RoomDao implements Dao<Integer, Room> {
             prepareStatement.executeUpdate();
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
             if (generatedKeys.next())
-                entity.setId(generatedKeys.getObject("id", Integer.class));
+                entity.setId(generatedKeys.getObject("id", Integer.class));// TODO not work this code
             return entity;
         } catch (SQLException e) {
             logger.log(Level.ERROR, "RoomDao error");

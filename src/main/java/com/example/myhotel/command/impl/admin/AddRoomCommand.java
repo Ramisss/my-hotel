@@ -43,8 +43,8 @@ public class AddRoomCommand implements Command {
                 .build();
         Room add = roomService.add(roomDto);
 
+        request.setAttribute("success_msg","Room saved to hotel ... " + hotelName);
 
         return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
     }
-
 }
