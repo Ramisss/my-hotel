@@ -25,6 +25,8 @@ public class HotelDao implements Dao<Integer, Hotel> {
         return INSTANCE;
     }
 
+    private static final String FIND_BY_NAME_SQL = "select id,name,address,country,phone_number,e_mail from hotel where name = ?";
+
     public static final String SAVE_SQL = "insert into hotel" +
             " (name," +
             " address, " +
@@ -34,7 +36,7 @@ public class HotelDao implements Dao<Integer, Hotel> {
             "VALUES(?,?,?,?,?) ";
 
     public static final String FIND_BY_ID_SQL = "select " +
-            "id,"+
+            "id," +
             "name," +
             "address," +
             "country," +
@@ -121,6 +123,24 @@ public class HotelDao implements Dao<Integer, Hotel> {
                 resultSet.getString("country"),
                 resultSet.getString("phone_number"),
                 resultSet.getString("e_mail"));
+    }
+
+    public Optional<Hotel> findByName(String name) throws DaoException {
+        Connection connection = ConnectionTestPool.get();
+        Hotel hotel = new Hotel();
+        try {
+            PreparedStatement prepareStatement = connection.prepareStatement(FIND_BY_NAME_SQL);
+            prepareStatement.setString(1, name);
+            ResultSet resultSet = prepareStatement.executeQuery();
+
+            while (resultSet.next()) {
+                buildHotel(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return Optional.of(hotel);
+
     }
 
 }

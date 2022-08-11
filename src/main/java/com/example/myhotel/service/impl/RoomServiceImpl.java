@@ -47,4 +47,6 @@ public class RoomServiceImpl implements RoomService {
     public boolean delete(RoomDto roomDto) throws ServiceException {
         return false;
     }
+
+
 }

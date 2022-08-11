@@ -74,4 +74,16 @@ public class HotelServiceImpl implements HotelService {
             throw new ServiceException(e);
         }
     }
+
+    public int findHotelByName(String hotelName) throws ServiceException {
+        Hotel hotel = new Hotel();
+        try {
+            if (hotelDao.findByName(hotelName).isPresent()) {
+                hotel = hotelDao.findByName(hotelName).get();
+            }
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return hotel.getId();
+    }
 }

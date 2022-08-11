@@ -22,7 +22,13 @@ public class RoomDao implements Dao<Integer, Room> {
     public static final Logger logger = LogManager.getLogger();
 
     public static final RoomDao INSTANCE = new RoomDao();
-    private static final String SAVE_SQL = "insert into room(user_id, name, max_person, hotel_id, is_ordered) VALUES(?,?,?,?,?) ";
+    private static final String SAVE_SQL = "insert into " +
+            "room(user_id," +
+            " name, " +
+            "max_person," +
+            " hotel_id," +
+            " is_ordered)" +
+            " VALUES(?,?,?,?,?) ";
 
     public static RoomDao getInstance() {
         return INSTANCE;

@@ -42,7 +42,7 @@
             color: #4b6cb7;
         }
 
-        input[type=text], input[type=password], textarea {
+        input[type=text], input[type=password], input[type=number], textarea {
             width: 100%;
             padding: 15px;
             margin: 5px 0 10px 0;
@@ -135,10 +135,17 @@
     <div class="container1">
         <h1> Add Room Form</h1>
         <hr>
-        <label> <b>Name</b> </label>
+        <label> <b>Hotel name:</b> </label>
+        <input type="text" name="hotelName" placeholder="Name" size="15" required/>
+
+        <label> <b>Room name:</b> </label>
         <input type="text" name="roomName" placeholder="Name" size="15" required/>
 
-        <label> <b>Max person:</b> </label>
+        <label > <b>Room number:</b> </label>
+        <input type="number" name="maxPerson" min="1" placeholder="0" required/><br>
+
+
+        <label style="margin-top: 10px"> <b>Max person:</b> </label>
         <input type="number" name="maxPerson" min="1" max="4" placeholder="0" required/>
 
 
