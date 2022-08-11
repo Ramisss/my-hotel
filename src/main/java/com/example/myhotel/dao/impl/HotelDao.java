@@ -58,11 +58,9 @@ public class HotelDao implements Dao<Integer, Hotel> {
             prepareStatement.executeUpdate();
 
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
-            generatedKeys.next();
-
-            entity.setId(generatedKeys.getObject("id", Integer.class));
+            if (generatedKeys.next())
+                entity.setId(generatedKeys.getObject("id", Integer.class));
             return entity;
-
 
         } catch (SQLException sqlException) {
             logger.log(Level.ERROR, "DRIVER NOT LOADED", sqlException);
@@ -86,7 +84,7 @@ public class HotelDao implements Dao<Integer, Hotel> {
             ResultSet resultSet = prepareStatement.executeQuery();
             Hotel hotel = new Hotel();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 hotel.setName(resultSet.getString("name"));
                 hotel.setAddress(resultSet.getString("address"));
                 hotel.setCountry(resultSet.getString("country"));
@@ -133,8 +131,8 @@ public class HotelDao implements Dao<Integer, Hotel> {
             prepareStatement.setString(1, name);
             ResultSet resultSet = prepareStatement.executeQuery();
 
-            while (resultSet.next()) {
-                buildHotel(resultSet);
+            if (resultSet.next()) {
+                hotel = buildHotel(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);

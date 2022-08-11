@@ -80,7 +80,7 @@
         }
 
         nav[role="navigation"] {
-            background: #2a3542;
+            background: #4b6cb7;
             color: #ddd;
             /* icons */
         }
@@ -509,11 +509,9 @@
 
 <nav role='navigation'>
     <ul class="main">
-        <li class="dashboard"><a href="admindashboard">Dashboard</a></li>
-        <li class="edit"><a href="#">Edit Website</a></li>
-        <li class="write"><a href="#">Write news</a></li>
-        <li class="comments"><a href="#">Ads</a></li>
-        <li class="users"><a href="#">Manage Users</a></li>
+        <li class="dashboard"><a href="#">Clients</a></li>
+        <li class="edit"><a href="#">Rooms</a></li>
+        <li class="write"><a href="#">Orders</a></li>
     </ul>
 </nav>
 
@@ -528,39 +526,11 @@
 
     <section class="panel important">
         <h2>Write a post</h2>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <div class="twothirds">
-                Blog title:<br/>
-                <input type="text" name="title" size="40"/><br/><br/>
-                Content:<br/>
-                <textarea name="newstext" rows="15" cols="67"></textarea><br/>
-            </div>
-            <div>
-                <input type="submit" name="submit" value="Save" />
-            </div>
-            </div>
+        <form action="${pageContext.request.contextPath}/controller" method="post">
+            <h1>form</h1>
         </form>
     </section>
 
 </main>
-
-
-<%--<div class="sidenav">--%>
-<%--    <a href="#about">About</a>--%>
-<%--    <a href="#services">Services</a>--%>
-<%--    <a href="#clients">Clients</a>--%>
-<%--    <a href="#contact">Contact</a>--%>
-<%--</div>--%>
-
-<%--<div class="main">--%>
-<%--    <h2>Sidebar</h2>--%>
-<%--    <p>This sidebar is of full height (100%) and always shown.</p>--%>
-<%--    <p>Scroll down the page to see the result.</p>--%>
-<%--    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>--%>
-<%--    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>--%>
-<%--    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>--%>
-<%--    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>--%>
-<%--</div>--%>
-
 </body>
 </html>

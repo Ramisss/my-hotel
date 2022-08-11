@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,13 +57,12 @@ public class RoomDao implements Dao<Integer, Room> {
     public Room save(Room entity) throws DaoException {
         try {
             Connection connection = ConnectionTestPool.get();
-            var prepareStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);
+            var prepareStatement = connection.prepareStatement(SAVE_SQL);
 
             if (entity.getHotelId() == null || entity.getUserId() == null) {
                 logger.log(Level.ERROR, "User Id or Hotel Id is null (RoomDao-method save)");
                 throw new DaoException("UserId or Hotel Id is null");
             }
-
             prepareStatement.setInt(1, entity.getUserId());
             prepareStatement.setString(2, entity.getName());
             prepareStatement.setShort(3, entity.getMaxPerson());
@@ -73,14 +71,9 @@ public class RoomDao implements Dao<Integer, Room> {
 
             prepareStatement.executeUpdate();
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
-            generatedKeys.next();
-
-//            ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
-//            generatedKeys.next();
-//
-            entity.setId(generatedKeys.getObject("id", Integer.class));
+            if (generatedKeys.next())
+                entity.setId(generatedKeys.getObject("id", Integer.class));
             return entity;
-
         } catch (SQLException e) {
             logger.log(Level.ERROR, "RoomDao error");
             throw new DaoException(e);

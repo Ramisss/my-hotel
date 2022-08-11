@@ -25,7 +25,7 @@ public class AddRoomCommand implements Command {
         HttpSession httpSession = request.getSession();
 //        Object hotelId = httpSession.getAttribute("hotelId");
         Object userId = httpSession.getAttribute("userId");
-        Router router =null;
+        Router router = null;
 
         String roomName = request.getParameter(RequestParameter.ROOM_NAME);
         String maxPerson = request.getParameter(RequestParameter.MAX_PERSON);
@@ -44,7 +44,7 @@ public class AddRoomCommand implements Command {
         Room add = roomService.add(roomDto);
 
 
-        return router=new Router(PagePath.ADMIN_PAGE,Router.Type.FORWARD);
+        return router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
     }
 
 }
