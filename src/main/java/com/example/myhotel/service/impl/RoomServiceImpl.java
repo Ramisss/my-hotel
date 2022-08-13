@@ -53,8 +53,11 @@ public class RoomServiceImpl implements RoomService {
 
     public List<Room> findAllUsers() throws ServiceException {
         try {
-            List<Room> all = roomDao.findAll();
-            return all;
+            List<Room> roomList = roomDao.findAll();
+            if (roomList.isEmpty()) {
+                return List.of();
+            }
+            return roomList;
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

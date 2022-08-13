@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,12 +42,29 @@ public class RoomDao implements Dao<Integer, Room> {
         Connection connection = ConnectionTestPool.get();
         try {
             PreparedStatement prepareStatement = connection.prepareStatement(FIND_ALL_SQL);
-
+            ResultSet resultSet = prepareStatement.executeQuery();
+            List<Room> roomList = new ArrayList<>();
+            while (resultSet.next()) {
+                roomList.add(roomBuilder(resultSet));
+            }
+            if (!roomList.isEmpty()) {
+                return roomList;
+            }
+            return List.of();
         } catch (SQLException e) {
             throw new DaoException(e);
         }
+    }
 
-        return null;
+    private Room roomBuilder(ResultSet resultSet) throws SQLException {
+        return new Room(
+                resultSet.getInt("id"),
+                resultSet.getInt("user_id"),
+                resultSet.getString("name"),
+                resultSet.getShort("max_person"),
+                resultSet.getInt("hotel_id"),
+                resultSet.getBoolean("is_ordered")
+        );
     }
 
     @Override
