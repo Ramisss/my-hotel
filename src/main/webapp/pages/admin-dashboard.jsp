@@ -247,9 +247,9 @@
         form input[type="submit"] {
             background: #ff1a1a;
             border: none;
-            border-bottom: solid 4px #e60000;
+            /*border-bottom: solid 4px #e60000;*/
             padding: 0.7em 3em;
-            margin: 1em 0;
+            margin: 0;
             color: white;
             text-shadow: 0 -1px 0 #e60000;
             font-size: 1.1em;
@@ -260,6 +260,7 @@
             -moz-border-radius: 0.5em;
             -ms-border-radius: 0.5em;
             border-radius: 0.5em;
+            cursor: pointer;
         }
 
         form input[type="submit"]:hover {
@@ -512,17 +513,22 @@
 
 <nav role='navigation'>
     <ul class="main">
+
         <form action="${pageContext.request.contextPath}/controller" method="get">
                 <input type="hidden" name="command" value="find_all_users">
             <input style="background: #4b6cb7" type="submit" value="Clients" name="submit"/>
-
-
-<%--            <li class="dashboard">--%>
-<%--                <a href="${pageContext.request.contextPath}/controller">Clients</a>--%>
-<%--            </li>--%>
         </form>
-        <li class="edit"><a href="#">Rooms</a></li>
-        <li class="write"><a href="#">Orders</a></li>
+
+        <form action="${pageContext.request.contextPath}/controller" method="get">
+            <input type="hidden" name="command" value="find_all_rooms">
+            <input style="background: #4b6cb7" type="submit" value="Rooms" name="submit"/>
+        </form>
+
+        <form action="${pageContext.request.contextPath}/controller" method="get">
+            <input type="hidden" name="command" value="find_all_orders">
+            <input style="background: #4b6cb7" type="submit" value="Orders" name="submit"/>
+        </form>
+
     </ul>
 </nav>
 <main style="padding: 5px;" role="main">

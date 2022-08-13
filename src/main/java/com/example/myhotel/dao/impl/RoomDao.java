@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -28,6 +29,8 @@ public class RoomDao implements Dao<Integer, Room> {
             " hotel_id," +
             " is_ordered)" +
             " VALUES(?,?,?,?,?) ";
+    private static final String FIND_ALL_SQL = "select id, user_id, name, max_person, hotel_id, is_ordered from room";
+
 
     public static RoomDao getInstance() {
         return INSTANCE;
@@ -35,6 +38,14 @@ public class RoomDao implements Dao<Integer, Room> {
 
     @Override
     public List<Room> findAll() throws DaoException {
+        Connection connection = ConnectionTestPool.get();
+        try {
+            PreparedStatement prepareStatement = connection.prepareStatement(FIND_ALL_SQL);
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+
         return null;
     }
 

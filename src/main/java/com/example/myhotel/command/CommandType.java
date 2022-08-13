@@ -3,9 +3,7 @@ package com.example.myhotel.command;
 import com.example.myhotel.command.impl.DefaultCommand;
 import com.example.myhotel.command.impl.SignInCommand;
 import com.example.myhotel.command.impl.SignUpCommand;
-import com.example.myhotel.command.impl.admin.AddHotelCommand;
-import com.example.myhotel.command.impl.admin.AddRoomCommand;
-import com.example.myhotel.command.impl.admin.FindAllUsersCommand;
+import com.example.myhotel.command.impl.admin.*;
 
 public enum CommandType {
     SIGN_UP(new SignUpCommand()),
@@ -14,6 +12,8 @@ public enum CommandType {
     ADD_HOTEL(new AddHotelCommand()),
     ADD_ROOM(new AddRoomCommand()),
     FIND_ALL_USERS(new FindAllUsersCommand()),
+    FIND_ALL_ROOMS(new FindAllRoomsCommand()),
+    FIND_ALL_ORDERS(new FindAllOrdersCommand()),
 
 
     DEFAULT(new DefaultCommand());
