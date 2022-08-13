@@ -15,5 +15,5 @@ public class Room {
     private String name;
     private Short maxPerson;
     private Integer hotelId;
-    private boolean isOrdered;
+    private Boolean isOrdered;
 }

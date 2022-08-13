@@ -544,7 +544,7 @@
             <tr>
                 <td>${room.name}</td>
                 <td>${room.maxPerson}</td>
-                <td>${room.isOrderd}</td>
+                <td>${room.isOrdered}</td>
             </tr>
 
         </c:forEach>

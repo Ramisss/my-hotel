@@ -94,7 +94,7 @@ public class RoomDao implements Dao<Integer, Room> {
             prepareStatement.setString(2, entity.getName());
             prepareStatement.setShort(3, entity.getMaxPerson());
             prepareStatement.setInt(4, entity.getHotelId());
-            prepareStatement.setObject(5, entity.isOrdered());
+            prepareStatement.setBoolean(5, entity.getIsOrdered());
 
             prepareStatement.executeUpdate();
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();

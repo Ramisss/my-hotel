@@ -15,7 +15,6 @@ public enum CommandType {
     FIND_ALL_ROOMS(new FindAllRoomsCommand()),
     FIND_ALL_ORDERS(new FindAllOrdersCommand()),
 
-
     DEFAULT(new DefaultCommand());
 
     private Command command;
