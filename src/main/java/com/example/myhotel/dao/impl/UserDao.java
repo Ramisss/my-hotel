@@ -43,13 +43,7 @@ public class UserDao implements Dao<Integer, User> {
                     " from users where e_mail = ?";
 
     private static final String FIND_ALL =
-            "select " +
-                    "first_name," +
-                    "last_name," +
-                    "phone_number," +
-                    "e_mail," +
-                    "login" +
-                    " from users;";
+            "select id, first_name, last_name, password, phone_number, e_mail, login, role_id from users";
 
     private static final String FIND_BY_ID =
             "select" +
@@ -93,6 +87,16 @@ public class UserDao implements Dao<Integer, User> {
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     public static final String GET_ROLE_BY_NAME_SQL = "select name from roles where name = ?";
+
+    public static final String EDIT_SQL = "UPDATE users set " +
+            "first_name=?," +
+            "last_name=?," +
+            "password=?," +
+            "phone_number=?," +
+            "e_mail=?," +
+            "login=? " +
+            "where id=?";
+
 
     public User findByEmailAndPassword(String email, String password) throws DaoException {
         User user = null;
@@ -181,7 +185,7 @@ public class UserDao implements Dao<Integer, User> {
             preparedStatement.setString(2, entity.getLastName());
             preparedStatement.setString(3, entity.getPassword());
             preparedStatement.setString(4, entity.getPhoneNumber());
-            preparedStatement.setString(5, entity.getEmail());
+            preparedStatement.setString(5, entity.getE_mail());
             preparedStatement.setString(6, entity.getLogin());
             preparedStatement.setObject(7, entity.getRole().ordinal()); // TODO error
 
@@ -222,17 +226,18 @@ public class UserDao implements Dao<Integer, User> {
     //    TODO This method for ROLE_USER
     private User buildUser(ResultSet resultSet) throws SQLException {
         return new User(
-                resultSet.getObject("id", Integer.class),
-                resultSet.getObject("first_name", String.class),
-                resultSet.getObject("last_name", String.class),
-                resultSet.getObject("password", String.class),
-                resultSet.getObject("phone_number", String.class),
-                resultSet.getObject("e_mail", String.class),
-                resultSet.getObject("login", String.class),
-                Role.find(resultSet.getObject("role_id", Integer.class)));
+                resultSet.getInt("id"),
+                resultSet.getString("first_name"),
+                resultSet.getString("last_name"),
+                resultSet.getString("password"),
+                resultSet.getString("phone_number"),
+                resultSet.getString("e_mail"),
+                resultSet.getString("login"),
+                Role.find(resultSet.getInt("role_id")));
 //                resultSet.getObject("role_id",Integer.class);
 //                Role.valueOf("ROLE_USER")); // TODO check
     }
+
 
 
 
@@ -270,5 +275,23 @@ public class UserDao implements Dao<Integer, User> {
             sqlException.printStackTrace();
         }
         return null;
+    }
+
+    public boolean editUser(User user) throws DaoException {
+        try {
+            Connection connection = ConnectionTestPool.get();
+            PreparedStatement prepareStatement = connection.prepareStatement(EDIT_SQL);
+
+            prepareStatement.setString(1, user.getFirstName());
+            prepareStatement.setString(2, user.getLastName());
+            prepareStatement.setString(3, user.getPassword());
+            prepareStatement.setString(4, user.getPhoneNumber());
+            prepareStatement.setString(5, user.getE_mail());
+            prepareStatement.setString(6, user.getLogin());
+            prepareStatement.setInt(7, user.getId());
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return false;
     }
 }

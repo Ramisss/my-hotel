@@ -20,7 +20,7 @@ public class UserMapper implements Mapper<UserDto, User> {
         return User.builder()
                 .firstName(object.getFirstName())
                 .lastName(object.getLastName())
-                .email(object.getEmail())
+                .e_mail(object.getEmail())
                 .login(object.getLogin())
                 .phoneNumber(object.getPhoneNumber())
                 .password(object.getPassword()) // TODO Password Encryption and Decryption

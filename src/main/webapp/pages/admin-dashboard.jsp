@@ -40,25 +40,30 @@
             background: white;
             box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
         }
+
         header[role="banner"] h1 {
             margin: 0;
             font-weight: 300;
             padding: 1rem;
         }
+
         header[role="banner"] h1:before {
             content: "\f248";
             font-family: FontAwesome;
             padding-right: 0.6em;
             color: red;
         }
+
         header[role="banner"] .utilities {
             width: 100%;
             background: slategray;
             color: #ddd;
         }
+
         header[role="banner"] .utilities li {
             border-bottom: solid 1px rgba(255, 255, 255, 0.2);
         }
+
         header[role="banner"] .utilities li a {
             padding: 0.7em;
             display: block;
@@ -84,35 +89,44 @@
             color: #ddd;
             /* icons */
         }
+
         nav[role="navigation"] li {
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
+
         nav[role="navigation"] li a {
             color: #ddd;
             text-decoration: none;
             display: block;
             padding: 0.7em;
         }
+
         nav[role="navigation"] li a:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
+
         nav[role="navigation"] li a:before {
             content: "\f248";
             font-family: FontAwesome;
             padding-right: 0.6em;
         }
+
         nav[role="navigation"] .dashboard a:before {
             content: "";
         }
+
         nav[role="navigation"] .write a:before {
             content: "";
         }
+
         nav[role="navigation"] .edit a:before {
             content: "";
         }
+
         nav[role="navigation"] .comments a:before {
             content: "";
         }
+
         nav[role="navigation"] .users a:before {
             content: "";
         }
@@ -144,6 +158,7 @@
             border-radius: 0.3rem;
             margin: 1%;
         }
+
         .panel > h2, .panel > ul {
             margin: 1rem;
         }
@@ -186,6 +201,7 @@
             padding-left: 1.2em;
             margin: 0.5em 0;
         }
+
         main li:before {
             content: "";
             position: absolute;
@@ -207,6 +223,7 @@
             border: solid 1px #dde;
             padding: 0.5em;
         }
+
         form input:after,
         form textarea:after,
         form select:after {
@@ -214,16 +231,19 @@
             display: table;
             clear: both;
         }
+
         form input[type="checkbox"],
         form input[type="radio"] {
             display: inline;
             width: auto;
         }
+
         form label,
         form legend {
             display: block;
             margin: 1em 0 0.5em;
         }
+
         form input[type="submit"] {
             background: #ff1a1a;
             border: none;
@@ -241,22 +261,35 @@
             -ms-border-radius: 0.5em;
             border-radius: 0.5em;
         }
+
         form input[type="submit"]:hover {
-            background: turquoise;
+
+            /* background: #ff1a1a; */
             border: none;
-            border-bottom: solid 4px #21ccbb;
+            /* border-bottom: solid 1px #e60000; */
             padding: 0.7em 3em;
-            margin: 1em 0;
+            /* margin: 0; */
             color: white;
-            text-shadow: 0 -1px 0 #21ccbb;
+            /* text-shadow: 0 -1px 0 #e60000; */
             font-size: 1.1em;
             font-weight: bold;
-            display: inline-block;
+            /* display: inline-block; */
             width: auto;
-            -webkit-border-radius: 0.5em;
-            -moz-border-radius: 0.5em;
-            -ms-border-radius: 0.5em;
-            border-radius: 0.5em;
+            /*background: turquoise;*/
+            /*border: none;*/
+            /*border-bottom: solid 4px #21ccbb;*/
+            /*padding: 0.7em 3em;*/
+            /*margin: 1em 0;*/
+            /*color: white;*/
+            /*text-shadow: 0 -1px 0 #21ccbb;*/
+            /*font-size: 1.1em;*/
+            /*font-weight: bold;*/
+            /*display: inline-block;*/
+            /*width: auto;*/
+            /*-webkit-border-radius: 0.5em;*/
+            /*-moz-border-radius: 0.5em;*/
+            /*-ms-border-radius: 0.5em;*/
+            /*border-radius: 0.5em;*/
         }
 
         /* feedback */
@@ -276,6 +309,7 @@
             padding: 0.5em 0.5em 0.5em 2em;
             border: solid 1px khaki;
         }
+
         .feedback:before {
             content: "";
             font-family: fontawesome;
@@ -283,9 +317,11 @@
             margin-left: -1.5em;
             margin-right: 0.5em;
         }
+
         .feedback li:before {
             border-left-color: #f6f0b9;
         }
+
         .feedback.error {
             background: #ffe9e0;
             color: #942a00;
@@ -293,6 +329,7 @@
             padding: 0.5em 0.5em 0.5em 2em;
             border: solid 1px lightsalmon;
         }
+
         .feedback.error:before {
             content: "";
             font-family: fontawesome;
@@ -300,9 +337,11 @@
             margin-left: -1.5em;
             margin-right: 0.5em;
         }
+
         .feedback.error li:before {
             border-left-color: #ffc4ad;
         }
+
         .feedback.success {
             background: #98eee6;
             color: #08322e;
@@ -310,6 +349,7 @@
             padding: 0.5em 0.5em 0.5em 2em;
             border: solid 1px turquoise;
         }
+
         .feedback.success:before {
             content: "";
             font-family: fontawesome;
@@ -317,6 +357,7 @@
             margin-left: -1.5em;
             margin-right: 0.5em;
         }
+
         .feedback.success li:before {
             border-left-color: #6ce7db;
         }
@@ -362,6 +403,7 @@
                 z-index: 99;
                 height: 75px;
             }
+
             header[role="banner"] .utilities {
                 position: absolute;
                 top: 0;
@@ -370,9 +412,11 @@
                 color: darkslategray;
                 width: auto;
             }
+
             header[role="banner"] .utilities li {
                 display: inline-block;
             }
+
             header[role="banner"] .utilities li a {
                 padding: 0.5em 1em;
             }
@@ -388,6 +432,7 @@
             main[role="main"] {
                 margin: 75px 0 40px 200px;
             }
+
             main[role="main"]:after {
                 content: "";
                 display: table;
@@ -399,6 +444,7 @@
                 float: left;
                 width: 96%;
             }
+
             .panel:after {
                 content: "";
                 display: table;
@@ -424,6 +470,7 @@
                 margin-left: 200px;
             }
         }
+
         @media screen and (min-width: 900px) {
             footer[role="contentinfo"] {
                 position: fixed;
@@ -437,9 +484,11 @@
                 width: 47%;
                 clear: none;
             }
+
             .panel.important {
                 width: 96%;
             }
+
             .panel.secondary {
                 width: 23%;
             }
@@ -447,52 +496,6 @@
 
     </style>
 
-
-
-
-
-
-
-    <%--    <style>--%>
-    <%--        body {--%>
-    <%--            font-family: 'Comfortaa', cursive;--%>
-    <%--        }--%>
-
-    <%--        .sidenav {--%>
-    <%--            height: 100%;--%>
-    <%--            width: 160px;--%>
-    <%--            position: fixed;--%>
-    <%--            z-index: 1;--%>
-    <%--            top: 0;--%>
-    <%--            left: 0;--%>
-    <%--            background-color: #4b6cb7;--%>
-    <%--            overflow-x: hidden;--%>
-    <%--            padding-top: 20px;--%>
-    <%--        }--%>
-
-    <%--        .sidenav a {--%>
-    <%--            padding: 6px 8px 6px 16px;--%>
-    <%--            text-decoration: none;--%>
-    <%--            font-size: 25px;--%>
-    <%--            color: #000000;--%>
-    <%--            display: block;--%>
-    <%--        }--%>
-
-    <%--        .sidenav a:hover {--%>
-    <%--            color: #f1f1f1;--%>
-    <%--        }--%>
-
-    <%--        .main {--%>
-    <%--            margin-left: 160px; /* Same as the width of the sidenav */--%>
-    <%--            font-size: 16px; /* Increased text to enable scrolling */--%>
-    <%--            padding: 0px 10px;--%>
-    <%--        }--%>
-
-    <%--        @media screen and (max-height: 450px) {--%>
-    <%--            .sidenav {padding-top: 15px;}--%>
-    <%--            .sidenav a {font-size: 18px;}--%>
-    <%--        }--%>
-    <%--    </style>--%>
 
 
 </head>
@@ -509,27 +512,40 @@
 
 <nav role='navigation'>
     <ul class="main">
-        <li class="dashboard"><a href="#">Clients</a></li>
+        <form action="${pageContext.request.contextPath}/controller" method="get">
+                <input type="hidden" name="command" value="find_all_users">
+            <input style="background: #4b6cb7" type="submit" value="Clients" name="submit"/>
+
+
+<%--            <li class="dashboard">--%>
+<%--                <a href="${pageContext.request.contextPath}/controller">Clients</a>--%>
+<%--            </li>--%>
+        </form>
         <li class="edit"><a href="#">Rooms</a></li>
         <li class="write"><a href="#">Orders</a></li>
     </ul>
 </nav>
+<main style="padding: 5px;" role="main">
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Phone number</th>
+            <th>email</th>
+            <th>login</th>
+        </tr>
+        <c:forEach var="user" items="${users}">
+            <tr>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.phoneNumber}</td>
+                <td>${user.e_mail}</td>
+                <td>${user.login}</td>
+            </tr>
 
-<main role="main">
+        </c:forEach>
 
-    <section class="panel important">
-        <h2>Write Some News</h2>
-        <ul>
-            <li>Information Panel</li>
-        </ul>
-    </section>
-
-    <section class="panel important">
-        <h2>Write a post</h2>
-        <form action="${pageContext.request.contextPath}/controller" method="post">
-            <h1>form</h1>
-        </form>
-    </section>
+    </table>
 
 </main>
 </body>

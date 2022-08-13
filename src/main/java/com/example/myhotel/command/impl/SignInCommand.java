@@ -30,7 +30,7 @@ public class SignInCommand implements Command {
         try {
             if (userServiceImpl.authEmailAndPassword(email, password)) {
                 user = userServiceImpl.getByEmail(email);
-                httpSession.setAttribute("userRole",user.getRole().name());
+                httpSession.setAttribute("userRole",user.getRole());
                 httpSession.setAttribute("userId",user.getId());
                 logger.log(Level.INFO,"user role from session"+httpSession.getAttribute("userRole"));
 

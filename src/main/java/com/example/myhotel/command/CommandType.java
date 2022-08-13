@@ -5,6 +5,7 @@ import com.example.myhotel.command.impl.SignInCommand;
 import com.example.myhotel.command.impl.SignUpCommand;
 import com.example.myhotel.command.impl.admin.AddHotelCommand;
 import com.example.myhotel.command.impl.admin.AddRoomCommand;
+import com.example.myhotel.command.impl.admin.FindAllUsersCommand;
 
 public enum CommandType {
     SIGN_UP(new SignUpCommand()),
@@ -12,6 +13,7 @@ public enum CommandType {
     //    ADMIN
     ADD_HOTEL(new AddHotelCommand()),
     ADD_ROOM(new AddRoomCommand()),
+    FIND_ALL_USERS(new FindAllUsersCommand()),
 
 
     DEFAULT(new DefaultCommand());

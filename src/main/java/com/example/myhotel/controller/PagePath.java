@@ -8,4 +8,5 @@ public final class PagePath {
     public static final String USER_PAGE = "/pages/user-page.jsp";
 
     public static final String ADMIN_PAGE = "/pages/admin-page.jsp";
+    public static final String ADMIN_DASHBOARD = "/pages/admin-dashboard.jsp";
 }

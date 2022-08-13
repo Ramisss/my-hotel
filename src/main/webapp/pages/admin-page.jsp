@@ -94,7 +94,9 @@
 <%----%>
 
 <button type="button" class="registerbtn">
-    <a href="${pageContext.request.contextPath}/pages/admin-dashboard.jsp"> SIGN IN </a>
+    <a href="${pageContext.request.contextPath}/pages/admin-dashboard.jsp"style="margin: 0;font-family: 'Comfortaa', cursive; color: #FFFFFF" >
+        Dashboard
+    </a>
 </button>
 
 <form action="${pageContext.request.contextPath}/controller" method="post">

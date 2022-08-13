@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -99,6 +100,27 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    public List<User> findAll() throws ServiceException {
+        try {
+            return userDao.findAll();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR,"THE LIST OF USERS HAS NOT BEEN RECEIVED");
+            throw new ServiceException(e);
+        }
+    }
+
+    public boolean editUser(UserDto userDto) throws ServiceException{
+        try {
+            if (userDao.findByEmail(userDto.getEmail()).isPresent()){
+                User user = userMapper.mapFrom(userDto);
+                userDao.editUser(user);
+            }
+
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return false;
+    }
 }
 
 

@@ -20,5 +20,7 @@ public final class RequestParameter {
     public static final String MAX_PERSON = "maxPerson";
     public static final String RATE = "rate";
 
+    public static final String USER_ROLE="userRole";
+    public static final String USERS="users";
 
 }
