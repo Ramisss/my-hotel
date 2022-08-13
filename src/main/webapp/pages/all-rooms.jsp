@@ -498,6 +498,21 @@
             }
         }
 
+        button {
+            font-weight: bold;
+            background-color: #4b6cb7;
+            border-radius: 5px;
+            color: white;
+            padding: 8px 22px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            /*margin: 0 auto;*/
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
     </style>
 
 
@@ -545,6 +560,14 @@
                 <td>${room.name}</td>
                 <td>${room.maxPerson}</td>
                 <td>${room.isOrdered}</td>
+                <td style="margin: 0 auto;">
+                    <form action="${pageContext.request.contextPath}/controller" method="post">
+                        <input type="hidden" name="room-id" value="${room.id}">
+                        <input type="hidden" name="command" value="edit_room">
+                        <button type="submit">Edit
+                        </button>
+                    </form>
+                </td>
             </tr>
 
         </c:forEach>
