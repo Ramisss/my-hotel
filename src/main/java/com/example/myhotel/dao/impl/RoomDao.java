@@ -47,10 +47,8 @@ public class RoomDao implements Dao<Integer, Room> {
             while (resultSet.next()) {
                 roomList.add(roomBuilder(resultSet));
             }
-            if (!roomList.isEmpty()) {
                 return roomList;
-            }
-            return List.of();
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }

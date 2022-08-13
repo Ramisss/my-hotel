@@ -16,5 +16,4 @@ public class Room {
     private Short maxPerson;
     private Integer hotelId;
     private boolean isOrdered;
-
 }

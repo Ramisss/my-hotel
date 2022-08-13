@@ -10,6 +10,7 @@ import com.example.myhotel.exception.CommandException;
 import com.example.myhotel.service.impl.RoomServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,7 +32,8 @@ public class FindAllRoomsCommand implements Command {
             try {
                 roomList = roomService.findAllUsers();
                 httpSession.setAttribute(RequestParameter.ROOMS, roomList);
-                router = new Router(PagePath.ADMIN_DASHBOARD, Router.Type.FORWARD);
+                logger.log(Level.INFO,roomList);
+                router = new Router(PagePath.ADMIN_FIND_ALL_ROOMS, Router.Type.FORWARD);
                 return router;
             } catch (Exception e) {
                 throw new CommandException(e);

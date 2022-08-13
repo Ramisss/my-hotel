@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -53,10 +54,10 @@ public class RoomServiceImpl implements RoomService {
 
     public List<Room> findAllUsers() throws ServiceException {
         try {
-            List<Room> roomList = roomDao.findAll();
-            if (roomList.isEmpty()) {
-                return List.of();
-            }
+            List<Room> roomList;
+            roomList = roomDao.findAll();
+            if (roomList.isEmpty())
+                return Collections.emptyList();
             return roomList;
         } catch (DaoException e) {
             throw new ServiceException(e);
