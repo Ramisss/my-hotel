@@ -507,7 +507,7 @@
     <ul class="utilities">
         <br>
         <li class="users"><a href="#">My Account</a></li>
-        <li class="logout warn"><a href="">Log Out</a></li>
+        <li class="logout warn"><a href="../index.jsp">Log Out</a></li>
     </ul>
 </header>
 
