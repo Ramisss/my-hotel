@@ -23,6 +23,7 @@ public class RoomDao implements Dao<Integer, Room> {
     public static final Logger logger = LogManager.getLogger();
 
     public static final RoomDao INSTANCE = new RoomDao();
+
     private static final String SAVE_SQL = "insert into " +
             "room(user_id," +
             " name, " +
@@ -30,7 +31,22 @@ public class RoomDao implements Dao<Integer, Room> {
             " hotel_id," +
             " is_ordered)" +
             " VALUES(?,?,?,?,?) ";
-    private static final String FIND_ALL_SQL = "select id, user_id, name, max_person, hotel_id, is_ordered from room";
+
+    private static final String FIND_ALL_SQL = "select " +
+            "id," +
+            " user_id, " +
+            "name," +
+            " max_person, " +
+            "hotel_id, " +
+            "is_ordered from room";
+
+    public static final String FIND_BY_ID_SQL = "select " +
+            "id," +
+            " user_id," +
+            " name," +
+            " max_person," +
+            " hotel_id," +
+            " is_ordered from room;";
 
 
     public static RoomDao getInstance() {
@@ -47,7 +63,7 @@ public class RoomDao implements Dao<Integer, Room> {
             while (resultSet.next()) {
                 roomList.add(roomBuilder(resultSet));
             }
-                return roomList;
+            return roomList;
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -67,6 +83,22 @@ public class RoomDao implements Dao<Integer, Room> {
 
     @Override
     public Optional<Room> findById(Integer id) throws DaoException {
+        try (Connection connection = ConnectionTestPool.get();
+             PreparedStatement prepareStatement = connection.prepareStatement(FIND_BY_ID_SQL);
+        ) {
+            prepareStatement.setInt(1, id);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            Room room;
+            while (resultSet.next()) {
+                room = roomBuilder(resultSet);
+                return Optional.of(room);
+            }
+        } catch (SQLException sqlException) {
+            logger.log(Level.ERROR, "ERROR in RoomDao method findById");
+            throw new DaoException(sqlException);
+        }
+
+
         return Optional.empty();
     }
 

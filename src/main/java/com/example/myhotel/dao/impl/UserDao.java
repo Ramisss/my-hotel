@@ -239,8 +239,6 @@ public class UserDao implements Dao<Integer, User> {
     }
 
 
-
-
     public User findByLogin(String login) throws DaoException {
         User user = null;
         try (

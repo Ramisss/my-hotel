@@ -515,7 +515,6 @@
 
     </style>
 
-
 </head>
 <body>
 
@@ -562,7 +561,7 @@
                 <td>${room.isOrdered}</td>
                 <td style="margin: 0 auto;">
                     <form action="${pageContext.request.contextPath}/controller" method="post">
-                        <input type="hidden" name="room-id" value="${room.id}">
+                        <input type="hidden" name="room_id" value="${room.id}">
                         <input type="hidden" name="command" value="edit_room">
                         <button type="submit">Edit
                         </button>

@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoomServiceImpl implements RoomService {
@@ -49,6 +50,17 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public boolean delete(RoomDto roomDto) throws ServiceException {
         return false;
+    }
+
+    @Override
+    public Optional<Room> findById(Integer roomId) throws ServiceException {
+        try {
+            roomDao.findById(roomId);
+            Room room = roomDao.findById(roomId).get();
+            return Optional.of(room);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
 

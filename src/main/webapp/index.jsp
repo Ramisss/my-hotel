@@ -67,8 +67,7 @@
     <title>Home page </title>
 </head>
 <body>
-<h1 style="font-weight: bold; font-family: 'Comfortaa', cursive;font-style: italic"> Welcome </h1>
-<h2 style="font-weight: bold; font-family: 'Comfortaa', cursive;font-style: italic">to the TASHKENT HOTEL </h2>
+<h1 style="font-weight: bold; font-family: 'Comfortaa', cursive;font-style: italic"> Welcome! </h1>
 <br/>
 
 <button type="submit" class="cancelbtn">

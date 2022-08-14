@@ -23,5 +23,6 @@ public final class RequestParameter {
     public static final String USER_ROLE="userRole";
     public static final String USERS="users";
     public static final String ROOMS="rooms";
+    public static final String ROOM_ID="room_id";
 
 }
