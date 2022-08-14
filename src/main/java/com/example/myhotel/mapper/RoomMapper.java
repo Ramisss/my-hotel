@@ -21,6 +21,7 @@ public class RoomMapper implements Mapper<RoomDto, Room>{
                 .maxPerson(object.getMaxPerson())
                 .hotelId(object.getHotelId())
                 .isOrdered(object.isOrdered())
+                .number(object.getNumber())
                 .build();
     }
 }

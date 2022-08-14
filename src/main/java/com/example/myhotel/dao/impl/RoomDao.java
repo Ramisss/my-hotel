@@ -29,8 +29,10 @@ public class RoomDao implements Dao<Integer, Room> {
             " name, " +
             "max_person," +
             " hotel_id," +
-            " is_ordered)" +
-            " VALUES(?,?,?,?,?) ";
+            " is_ordered," +
+            "number" +
+            ")" +
+            " VALUES(?,?,?,?,?,?) ";
 
     private static final String FIND_ALL_SQL = "select " +
             "id," +
@@ -38,7 +40,8 @@ public class RoomDao implements Dao<Integer, Room> {
             "name," +
             " max_person, " +
             "hotel_id, " +
-            "is_ordered from room";
+            "is_ordered," +
+            "number from room";
 
     public static final String FIND_BY_ID_SQL = "select " +
             "id," +
@@ -46,7 +49,8 @@ public class RoomDao implements Dao<Integer, Room> {
             " name," +
             " max_person," +
             " hotel_id," +
-            " is_ordered from room;";
+            " is_ordered," +
+            "number from room;";
 
 
     public static RoomDao getInstance() {
@@ -77,7 +81,8 @@ public class RoomDao implements Dao<Integer, Room> {
                 resultSet.getString("name"),
                 resultSet.getShort("max_person"),
                 resultSet.getInt("hotel_id"),
-                resultSet.getBoolean("is_ordered")
+                resultSet.getBoolean("is_ordered"),
+                resultSet.getInt("number")
         );
     }
 
@@ -127,6 +132,7 @@ public class RoomDao implements Dao<Integer, Room> {
             prepareStatement.setShort(3, entity.getMaxPerson());
             prepareStatement.setInt(4, entity.getHotelId());
             prepareStatement.setBoolean(5, entity.getIsOrdered());
+            prepareStatement.setInt(6, entity.getNumber());
 
             prepareStatement.executeUpdate();
             ResultSet generatedKeys = prepareStatement.getGeneratedKeys();

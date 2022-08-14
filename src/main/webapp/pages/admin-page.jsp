@@ -144,7 +144,7 @@
         <input type="text" name="roomName" placeholder="Name" size="15" required/>
 
         <label> <b>Room number:</b> </label>
-        <input type="number" name="maxPerson" min="1" placeholder="0" required/><br>
+        <input type="number" name="room_number" min="1" placeholder="0" required/><br>
 
 
         <label style="margin-top: 10px"> <b>Max person:</b> </label>

@@ -550,12 +550,14 @@
 <main style="padding: 5px;" role="main">
     <table>
         <tr>
+            <th>Room number</th>
             <th>Room name</th>
             <th>Max person</th>
             <th>Is booked</th>
         </tr>
         <c:forEach var="room" items="${rooms}">
             <tr>
+                <td>${room.number}</td>
                 <td>${room.name}</td>
                 <td>${room.maxPerson}</td>
                 <td>${room.isOrdered}</td>

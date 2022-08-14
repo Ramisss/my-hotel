@@ -12,4 +12,5 @@ public class RoomDto {
     Short maxPerson;
     boolean isOrdered;
     Integer hotelId;
+    Integer number;
 }

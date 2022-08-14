@@ -31,6 +31,7 @@ public class AddRoomCommand implements Command {
         String maxPerson = request.getParameter(RequestParameter.MAX_PERSON);
         Short paceToShort = Short.valueOf(maxPerson);
         String hotelName = request.getParameter(RequestParameter.HOTEL_NAME);
+        Integer number = Integer.valueOf(request.getParameter(RequestParameter.ROOM_NUMBER));
 
         int hotelId = hotelService.findHotelByName(hotelName);
 
@@ -40,6 +41,7 @@ public class AddRoomCommand implements Command {
                 .userId((Integer) userId)
                 .hotelId((Integer) hotelId)
                 .isOrdered(false)
+                .number(number)
                 .build();
         Room add = roomService.add(roomDto);
 

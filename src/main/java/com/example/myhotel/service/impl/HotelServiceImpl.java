@@ -66,6 +66,7 @@ public class HotelServiceImpl implements HotelService {
 
     }
 
+    @Override
     public Optional<Hotel> findById(Integer hotelId) throws ServiceException {
         try {
             return hotelDao.findById(hotelId);
