@@ -138,16 +138,16 @@
         <h1> Add Room Form</h1>
         <hr>
         <label> <b>Hotel name:</b> </label>
-        <input type="text" name="hotelName" placeholder="Name"  size="15" value=${hotelName}  required/>
+        <input type="text" name="hotelName" placeholder="Name"  size="15" value=""  />
 
         <label> <b>Room name:</b> </label>
-        <input type="text" name="roomName" placeholder="Name" size="15" value=${roomName} required/>
+        <input type="text" name="roomName" placeholder="Name" size="15" value="${roomName}" />
 
         <label> <b>Room number:</b> </label>
-        <input type="number" name="maxPerson" min="1" placeholder="0" value=${room_number} required/><br>
+        <input type="number" name="maxPerson" min="1" placeholder="0" value=${room_number} /><br>
 
         <label style="margin-top: 10px"> <b>Max person:</b> </label>
-        <input type="number" name="maxPerson" min="1" max="4" placeholder="0" value=${maxPerson} required/>
+        <input type="number" name="maxPerson" min="1" max="4" placeholder="0" value=${maxPerson} />
 
         <button type="submit" class="registerbtn" style="margin-top:10px">Add Room</button>
 

@@ -50,7 +50,8 @@ public class RoomDao implements Dao<Integer, Room> {
             " max_person," +
             " hotel_id," +
             " is_ordered," +
-            "number from room;";
+            "number from room " +
+            "where room.id=?;";
 
 
     public static RoomDao getInstance() {
@@ -102,8 +103,6 @@ public class RoomDao implements Dao<Integer, Room> {
             logger.log(Level.ERROR, "ERROR in RoomDao method findById");
             throw new DaoException(sqlException);
         }
-
-
         return Optional.empty();
     }
 

@@ -14,6 +14,7 @@ import com.example.myhotel.service.impl.HotelServiceImpl;
 import com.example.myhotel.service.impl.RoomServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,12 +44,15 @@ public class EditRoomCommand implements Command {
         room = roomService.findById(roomId).get();
         hotel= hotelService.findById(room.getHotelId()).get();
 
-        request.setAttribute(RequestParameter.HOTEL_NAME,hotel.getName());
-        request.setAttribute(RequestParameter.ROOM_NAME,room.getName());
-        request.setAttribute(RequestParameter.ROOM_NUMBER,room.getNumber());
-        request.setAttribute(RequestParameter.ROOM_NAME,room.getName());
+        httpSession.setAttribute(RequestParameter.HOTEL_NAME,hotel.getName());
+        httpSession.setAttribute(RequestParameter.ROOM_NAME,room.getName());
+        httpSession.setAttribute(RequestParameter.ROOM_NUMBER,room.getNumber());
+        httpSession.setAttribute(RequestParameter.MAX_PERSON,room.getNumber());
 
-        router = new Router(PagePath.ADMIN_PAGE, Router.Type.REDIRECT);
+        logger.log(Level.INFO,httpSession.getAttribute(RequestParameter.ROOM_NAME));
+        logger.log(Level.INFO,httpSession.getAttribute(RequestParameter.HOTEL_NAME));
+
+        router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
         return router;
     }
 }

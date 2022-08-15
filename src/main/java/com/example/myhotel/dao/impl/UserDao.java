@@ -211,7 +211,7 @@ public class UserDao implements Dao<Integer, User> {
             prepareStatement.setString(1, email);
             ResultSet resultSet = prepareStatement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 user = buildUser(resultSet);
                 return Optional.of(user);
             }
