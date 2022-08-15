@@ -34,7 +34,7 @@ public class EditRoomCommand implements Command {
         Room room;
 
         Integer roomId = Integer.valueOf(request.getParameter(RequestParameter.ROOM_ID));
-        logger.log(Level.INFO,roomId+"room ----id");
+        logger.log(Level.INFO, roomId + "room ----id");
 
         Optional<Room> optionalRoom = roomService.findById(roomId);
         if (!optionalRoom.isPresent()) {
@@ -42,21 +42,24 @@ public class EditRoomCommand implements Command {
             router = new Router(PagePath.ADMIN_FIND_ALL_ROOMS, Router.Type.FORWARD);
             return router;
         }
-        room = roomService.findById(roomId).get();
-        hotel= hotelService.findById(room.getHotelId()).get();
 
-        request.setAttribute("room",room);
+        room = roomService.findById(roomId).get();
+        hotel = hotelService.findById(room.getHotelId()).get();
+
+        request.setAttribute("room", room);
         logger.log(Level.INFO, room.toString());
-        request.setAttribute("hotel",hotel);
+        request.setAttribute("hotel", hotel);
         logger.log(Level.INFO, hotel.toString());
 
-//        httpSession.setAttribute(RequestParameter.HOTEL_NAME,hotel.getName());// request room object
-//        httpSession.setAttribute(RequestParameter.ROOM_NAME,room.getName());
-//        httpSession.setAttribute(RequestParameter.ROOM_NUMBER,room.getNumber());
-//        httpSession.setAttribute(RequestParameter.MAX_PERSON,room.getNumber());
+        String hotelName = request.getParameter(RequestParameter.HOTEL_NAME);
+        String roomName = request.getParameter(RequestParameter.ROOM_NAME);
+        Integer roomNumber = Integer.valueOf(request.getParameter(RequestParameter.ROOM_NUMBER));
+        Short maxPerson = Short.valueOf(request.getParameter(RequestParameter.MAX_PERSON));
 
-//        logger.log(Level.INFO,httpSession.getAttribute(room));
-//        logger.log(Level.INFO,httpSession.getAttribute(RequestParameter.HOTEL_NAME));
+        room.setName(roomName);
+        room.setNumber(roomNumber);
+        room.setMaxPerson(maxPerson);
+
 
         router = new Router(PagePath.ADMIN_EDIT_ROOM, Router.Type.FORWARD);
         return router;

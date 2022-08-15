@@ -130,10 +130,10 @@
 <h2 style="color: greenyellow;text-align: center">${success_msg}</h2>
 <h2 style="color: red;text-align: center">${error_msg}</h2>
 
-<%--ADD ROOM--%>
+<%--EDIT ROOM--%>
 <%----%>
 <form action="${pageContext.request.contextPath}/controller" method="post">
-    <input type="hidden" name="command" value="add_room">
+    <input type="hidden" name="command" value="edit_room">
     <div class="container1">
         <h1> Edit Room Form</h1>
         <hr>
@@ -144,17 +144,14 @@
         <input type="text" name="roomName" placeholder="Name" size="15" value="${room.name}" />
 
         <label> <b>Room number:</b> </label>
-        <input type="number" name="maxPerson" min="1" placeholder="0" value=${room.number} /><br>
+        <input type="number" name="roomNumber" min="1" placeholder="0" value=${room.number} /><br>
 
         <label style="margin-top: 10px"> <b>Max person:</b> </label>
         <input type="number" name="maxPerson" min="1" max="4" placeholder="0" value=${room.maxPerson} />
 
-        <button type="submit" class="registerbtn" style="margin-top:10px">Add Room</button>
+        <button type="submit" class="registerbtn" style="margin-top:10px">Edit Room</button>
 
-        <%--        ERROR--%>
-        <%--        <h2 style="color: red; text-align: center">${emailAndPhoneNumber}</h2>--%>
 </form>
-<%----%>
 
 <h2 style="color: greenyellow; text-align: center"> ${success_msg} !!</h2>
 </body>

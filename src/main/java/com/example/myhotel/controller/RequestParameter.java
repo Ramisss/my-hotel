@@ -19,10 +19,14 @@ public final class RequestParameter {
     public static final String ROOM_ID = "room_id";
     public static final String ROOM_NAME = "roomName";
     public static final String MAX_PERSON = "maxPerson";
-    public static final String ROOM_NUMBER = "room_number";
+    public static final String ROOM_NUMBER = "roomNumber";
     public static final String ROOMS = "rooms";
 
     public static final String USER_ROLE = "userRole";
     public static final String USERS = "users";
+
+
+
+    public static final String ERROR_MSG = "error_msg";
 
 }

@@ -560,6 +560,7 @@
                 <td>${room.name}</td>
                 <td>${room.maxPerson}</td>
                 <td>${room.isOrdered}</td>
+                    <%--                EDIT BUTTON--%>
                 <td style="margin: 0 auto;">
                     <form action="${pageContext.request.contextPath}/controller" method="post">
                         <input type="hidden" name="room_id" value="${room.id}">
@@ -568,12 +569,19 @@
                         </button>
                     </form>
                 </td>
+                    <%--                DELETE BUTTON--%>
+                <td style="margin: 0 auto;">
+                    <form action="${pageContext.request.contextPath}/controller" method="post">
+                        <input type="hidden" name="room_id" value="${42}">
+                        <input type="hidden" name="command" value="delete_room">
+                        <button type="submit">Delete
+                        </button>
+                    </form>
+                </td>
             </tr>
-
         </c:forEach>
-
     </table>
-
+    <h2 style="color: red">${error_msg}</h2>
 </main>
 </body>
 </html>
