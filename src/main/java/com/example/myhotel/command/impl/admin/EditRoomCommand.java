@@ -34,6 +34,7 @@ public class EditRoomCommand implements Command {
         Room room;
 
         Integer roomId = Integer.valueOf(request.getParameter(RequestParameter.ROOM_ID));
+        logger.log(Level.INFO,roomId+"room ----id");
 
         Optional<Room> optionalRoom = roomService.findById(roomId);
         if (!optionalRoom.isPresent()) {
@@ -44,15 +45,20 @@ public class EditRoomCommand implements Command {
         room = roomService.findById(roomId).get();
         hotel= hotelService.findById(room.getHotelId()).get();
 
-        httpSession.setAttribute(RequestParameter.HOTEL_NAME,hotel.getName());
-        httpSession.setAttribute(RequestParameter.ROOM_NAME,room.getName());
-        httpSession.setAttribute(RequestParameter.ROOM_NUMBER,room.getNumber());
-        httpSession.setAttribute(RequestParameter.MAX_PERSON,room.getNumber());
+        request.setAttribute("room",room);
+        logger.log(Level.INFO, room.toString());
+        request.setAttribute("hotel",hotel);
+        logger.log(Level.INFO, hotel.toString());
 
-        logger.log(Level.INFO,httpSession.getAttribute(RequestParameter.ROOM_NAME));
-        logger.log(Level.INFO,httpSession.getAttribute(RequestParameter.HOTEL_NAME));
+//        httpSession.setAttribute(RequestParameter.HOTEL_NAME,hotel.getName());// request room object
+//        httpSession.setAttribute(RequestParameter.ROOM_NAME,room.getName());
+//        httpSession.setAttribute(RequestParameter.ROOM_NUMBER,room.getNumber());
+//        httpSession.setAttribute(RequestParameter.MAX_PERSON,room.getNumber());
 
-        router = new Router(PagePath.ADMIN_PAGE, Router.Type.FORWARD);
+//        logger.log(Level.INFO,httpSession.getAttribute(room));
+//        logger.log(Level.INFO,httpSession.getAttribute(RequestParameter.HOTEL_NAME));
+
+        router = new Router(PagePath.ADMIN_EDIT_ROOM, Router.Type.FORWARD);
         return router;
     }
 }

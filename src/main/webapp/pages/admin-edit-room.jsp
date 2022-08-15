@@ -135,19 +135,19 @@
 <form action="${pageContext.request.contextPath}/controller" method="post">
     <input type="hidden" name="command" value="add_room">
     <div class="container1">
-        <h1> Add Room Form</h1>
+        <h1> Edit Room Form</h1>
         <hr>
         <label> <b>Hotel name:</b> </label>
-        <input type="text" name="hotelName" placeholder="Name"  size="15" value=""  />
+        <input type="text" name="hotelName" placeholder="Name"  size="15" value="${hotel.name}"  />
 
         <label> <b>Room name:</b> </label>
-        <input type="text" name="roomName" placeholder="Name" size="15" value="${roomName}" />
+        <input type="text" name="roomName" placeholder="Name" size="15" value="${room.name}" />
 
         <label> <b>Room number:</b> </label>
-        <input type="number" name="maxPerson" min="1" placeholder="0" value=${room_number} /><br>
+        <input type="number" name="maxPerson" min="1" placeholder="0" value=${room.number} /><br>
 
         <label style="margin-top: 10px"> <b>Max person:</b> </label>
-        <input type="number" name="maxPerson" min="1" max="4" placeholder="0" value=${maxPerson} />
+        <input type="number" name="maxPerson" min="1" max="4" placeholder="0" value=${room.maxPerson} />
 
         <button type="submit" class="registerbtn" style="margin-top:10px">Add Room</button>
 
