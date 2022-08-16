@@ -2,6 +2,7 @@ package com.example.myhotel.service.impl;
 
 import com.example.myhotel.dao.impl.RoomDao;
 import com.example.myhotel.dto.RoomDto;
+import com.example.myhotel.entity.Hotel;
 import com.example.myhotel.entity.Room;
 import com.example.myhotel.exception.DaoException;
 import com.example.myhotel.exception.ServiceException;
@@ -13,7 +14,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +44,14 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public boolean update(RoomDto roomDto) throws ServiceException {
-        return false;
+        try {
+            logger.log(Level.INFO,"================="+roomDto.getId()+"==============");
+            Optional<Room> byId = findById(roomDto.getId());
+            roomDao.update(roomMapper.mapFrom(roomDto));
+            return true;
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
@@ -66,13 +73,15 @@ public class RoomServiceImpl implements RoomService {
 
     public List<Room> findAllUsers() throws ServiceException {
         try {
-            List<Room> roomList;
-            roomList = roomDao.findAll();
-            if (roomList.isEmpty())
-                return Collections.emptyList();
-            return roomList;
+            List<Room> all = roomDao.findAll();
+            return all;
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public boolean editRoom(Room room, Hotel hotel) {
+        return false;
     }
 }

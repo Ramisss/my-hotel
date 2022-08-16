@@ -10,6 +10,7 @@ import com.example.myhotel.entity.Hotel;
 import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exception.CommandException;
 import com.example.myhotel.exception.ServiceException;
+import com.example.myhotel.service.HotelService;
 import com.example.myhotel.service.impl.HotelServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

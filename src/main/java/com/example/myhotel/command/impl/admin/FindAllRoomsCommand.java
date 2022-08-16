@@ -31,7 +31,7 @@ public class FindAllRoomsCommand implements Command {
             List<Room> roomList = new ArrayList<>();
             try {
                 roomList = roomService.findAllUsers();
-                httpSession.setAttribute(RequestParameter.ROOMS, roomList);
+                request.setAttribute(RequestParameter.ROOMS, roomList);
                 logger.log(Level.INFO,roomList);
                 router = new Router(PagePath.ADMIN_FIND_ALL_ROOMS, Router.Type.FORWARD);
                 return router;

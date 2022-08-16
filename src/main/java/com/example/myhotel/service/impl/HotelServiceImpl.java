@@ -3,6 +3,7 @@ package com.example.myhotel.service.impl;
 import com.example.myhotel.dao.impl.HotelDao;
 import com.example.myhotel.dto.HotelDto;
 import com.example.myhotel.entity.Hotel;
+import com.example.myhotel.entity.Room;
 import com.example.myhotel.exception.DaoException;
 import com.example.myhotel.exception.ServiceException;
 import com.example.myhotel.mapper.HotelMapper;
@@ -87,4 +88,6 @@ public class HotelServiceImpl implements HotelService {
         }
         return hotel.getId();
     }
+
+
 }

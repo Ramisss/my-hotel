@@ -1,7 +1,9 @@
 package com.example.myhotel.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 @Value

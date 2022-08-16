@@ -4,13 +4,12 @@ import com.example.myhotel.command.Command;
 import com.example.myhotel.controller.PagePath;
 import com.example.myhotel.controller.RequestParameter;
 import com.example.myhotel.controller.Router;
-import com.example.myhotel.entity.Hotel;
-import com.example.myhotel.entity.Room;
+import com.example.myhotel.dto.HotelDto;
+import com.example.myhotel.dto.RoomDto;
+import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exception.CommandException;
 import com.example.myhotel.exception.ServiceException;
-import com.example.myhotel.service.HotelService;
 import com.example.myhotel.service.RoomService;
-import com.example.myhotel.service.impl.HotelServiceImpl;
 import com.example.myhotel.service.impl.RoomServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -18,50 +17,36 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Optional;
-
 public class EditRoomCommand implements Command {
     public static final Logger logger = LogManager.getLogger();
     private final RoomService roomService = RoomServiceImpl.getInstance();
-    private final HotelService hotelService = HotelServiceImpl.getInstance();
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException, ServiceException {
         HttpSession httpSession = request.getSession();
 
+
         Router router;
-        Hotel hotel;
-        Room room;
-
+//        Role parameter = Role.valueOf(request.getParameter(RequestParameter.USER_ROLE));
         Integer roomId = Integer.valueOf(request.getParameter(RequestParameter.ROOM_ID));
-        logger.log(Level.INFO, roomId + "room ----id");
-
-        Optional<Room> optionalRoom = roomService.findById(roomId);
-        if (!optionalRoom.isPresent()) {
-            request.setAttribute("room_id", "Room not found!");
-            router = new Router(PagePath.ADMIN_FIND_ALL_ROOMS, Router.Type.FORWARD);
-            return router;
-        }
-
-        room = roomService.findById(roomId).get();
-        hotel = hotelService.findById(room.getHotelId()).get();
-
-        request.setAttribute("room", room);
-        logger.log(Level.INFO, room.toString());
-        request.setAttribute("hotel", hotel);
-        logger.log(Level.INFO, hotel.toString());
-
         String hotelName = request.getParameter(RequestParameter.HOTEL_NAME);
         String roomName = request.getParameter(RequestParameter.ROOM_NAME);
         Integer roomNumber = Integer.valueOf(request.getParameter(RequestParameter.ROOM_NUMBER));
         Short maxPerson = Short.valueOf(request.getParameter(RequestParameter.MAX_PERSON));
 
-        room.setName(roomName);
-        room.setNumber(roomNumber);
-        room.setMaxPerson(maxPerson);
+        logger.log(Level.INFO,roomId+"ROOM_ID");
+
+       RoomDto roomDto =RoomDto.builder()
+               .id(roomId)
+               .name(roomName)
+               .number(roomNumber)
+               .maxPerson(maxPerson)
+               .build();
 
 
-        router = new Router(PagePath.ADMIN_EDIT_ROOM, Router.Type.FORWARD);
-        return router;
+        roomService.update(roomDto);
+
+        logger.log(Level.INFO,roomDto);
+        return router =new Router(PagePath.ADMIN_EDIT_ROOM, Router.Type.FORWARD);
     }
 }

@@ -16,4 +16,7 @@ public interface RoomService {
     boolean delete(RoomDto roomDto) throws ServiceException;
 
     Optional<Room> findById(Integer roomId) throws ServiceException;
+
+
+    boolean editRoom(Room room, Hotel hotel);
 }

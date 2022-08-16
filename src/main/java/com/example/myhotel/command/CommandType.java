@@ -1,7 +1,6 @@
 package com.example.myhotel.command;
 
 import com.example.myhotel.command.impl.DefaultCommand;
-import com.example.myhotel.command.impl.admin.EditRoomCommand;
 import com.example.myhotel.command.impl.SignInCommand;
 import com.example.myhotel.command.impl.SignUpCommand;
 import com.example.myhotel.command.impl.admin.*;
@@ -15,6 +14,7 @@ public enum CommandType {
     FIND_ALL_USERS(new FindAllUsersCommand()),
     FIND_ALL_ROOMS(new FindAllRoomsCommand()),
     FIND_ALL_ORDERS(new FindAllOrdersCommand()),
+    EDIT_ROOM_PAGE(new EditRoomPageCommand()),// the page opens with the completed data
     EDIT_ROOM(new EditRoomCommand()),
     DELETE_ROOM(new DeleteRoomCommand()),
 

@@ -564,7 +564,7 @@
                 <td style="margin: 0 auto;">
                     <form action="${pageContext.request.contextPath}/controller" method="post">
                         <input type="hidden" name="room_id" value="${room.id}">
-                        <input type="hidden" name="command" value="edit_room">
+                        <input type="hidden" name="command" value="edit_room_page">
                         <button type="submit">Edit
                         </button>
                     </form>
@@ -572,7 +572,7 @@
                     <%--                DELETE BUTTON--%>
                 <td style="margin: 0 auto;">
                     <form action="${pageContext.request.contextPath}/controller" method="post">
-                        <input type="hidden" name="room_id" value="${42}">
+                        <input type="hidden" name="room_id" value="${room.id}">
                         <input type="hidden" name="command" value="delete_room">
                         <button type="submit">Delete
                         </button>
