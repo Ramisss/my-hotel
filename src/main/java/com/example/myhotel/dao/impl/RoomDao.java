@@ -57,6 +57,7 @@ public class RoomDao implements Dao<Integer, Room> {
             "number=?," +
             "max_person=?" +
             " where id=?";
+    private static final String DELETE_BY_ID = "delete from room where id =?";
 
 
     public static RoomDao getInstance() {
@@ -113,6 +114,16 @@ public class RoomDao implements Dao<Integer, Room> {
 
     @Override
     public boolean delete(Integer id) throws DaoException {
+        Connection connection = ConnectionTestPool.get();
+        try {
+            PreparedStatement prepareStatement = connection.prepareStatement(DELETE_BY_ID);
+            prepareStatement.setInt(1, id);
+            return prepareStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         return false;
     }
 
@@ -121,10 +132,10 @@ public class RoomDao implements Dao<Integer, Room> {
         Connection connection = ConnectionTestPool.get();
         try {
             PreparedStatement prepareStatement = connection.prepareStatement(UPDATE_ROOM_SQL);
-            prepareStatement.setString(1,entity.getName());
-            prepareStatement.setInt(2,entity.getNumber());
-            prepareStatement.setInt(3,entity.getMaxPerson());
-            prepareStatement.setInt(4,entity.getId());
+            prepareStatement.setString(1, entity.getName());
+            prepareStatement.setInt(2, entity.getNumber());
+            prepareStatement.setInt(3, entity.getMaxPerson());
+            prepareStatement.setInt(4, entity.getId());
             prepareStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);

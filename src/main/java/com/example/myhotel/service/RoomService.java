@@ -13,7 +13,7 @@ public interface RoomService {
 
     boolean update(RoomDto roomDto) throws ServiceException;
 
-    boolean delete(RoomDto roomDto) throws ServiceException;
+    boolean delete(Integer id) throws ServiceException;
 
     Optional<Room> findById(Integer roomId) throws ServiceException;
 

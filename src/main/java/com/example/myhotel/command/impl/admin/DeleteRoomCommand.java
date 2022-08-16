@@ -35,6 +35,8 @@ public class DeleteRoomCommand implements Command {
             return router;
         }
 
+
+        roomService.delete(roomId);
         router = new Router(PagePath.ADMIN_FIND_ALL_ROOMS, Router.Type.FORWARD);
 
         return router;

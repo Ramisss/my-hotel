@@ -45,7 +45,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public boolean update(RoomDto roomDto) throws ServiceException {
         try {
-            logger.log(Level.INFO,"================="+roomDto.getId()+"==============");
+            logger.log(Level.INFO, "=================" + roomDto.getId() + "==============");
             Optional<Room> byId = findById(roomDto.getId());
             roomDao.update(roomMapper.mapFrom(roomDto));
             return true;
@@ -55,9 +55,14 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public boolean delete(RoomDto roomDto) throws ServiceException {
-        return false;
+    public boolean delete(Integer id) throws ServiceException {
+        try {
+            return roomDao.delete(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
+
 
     @Override
     public Optional<Room> findById(Integer roomId) throws ServiceException {
