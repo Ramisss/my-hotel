@@ -29,4 +29,5 @@ public final class RequestParameter {
 
     public static final String ERROR_MSG = "error_msg";
 
+    public static final String USER_ID = "userId";
 }

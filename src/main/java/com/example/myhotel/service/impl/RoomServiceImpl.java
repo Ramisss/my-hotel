@@ -45,8 +45,6 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public boolean update(RoomDto roomDto) throws ServiceException {
         try {
-            logger.log(Level.INFO, "=================" + roomDto.getId() + "==============");
-            Optional<Room> byId = findById(roomDto.getId());
             roomDao.update(roomMapper.mapFrom(roomDto));
             return true;
         } catch (DaoException e) {

@@ -4,9 +4,7 @@ import com.example.myhotel.command.Command;
 import com.example.myhotel.controller.PagePath;
 import com.example.myhotel.controller.RequestParameter;
 import com.example.myhotel.controller.Router;
-import com.example.myhotel.dto.HotelDto;
 import com.example.myhotel.dto.RoomDto;
-import com.example.myhotel.entity.type.Role;
 import com.example.myhotel.exception.CommandException;
 import com.example.myhotel.exception.ServiceException;
 import com.example.myhotel.service.RoomService;
@@ -25,6 +23,8 @@ public class EditRoomCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException, ServiceException {
         HttpSession httpSession = request.getSession();
 
+        Integer admin = (Integer) httpSession.getAttribute(RequestParameter.USER_ID);
+
 
         Router router;
 //        Role parameter = Role.valueOf(request.getParameter(RequestParameter.USER_ROLE));
@@ -34,19 +34,19 @@ public class EditRoomCommand implements Command {
         Integer roomNumber = Integer.valueOf(request.getParameter(RequestParameter.ROOM_NUMBER));
         Short maxPerson = Short.valueOf(request.getParameter(RequestParameter.MAX_PERSON));
 
-        logger.log(Level.INFO,roomId+"ROOM_ID");
+        logger.log(Level.INFO, roomId + "ROOM_ID");
 
-       RoomDto roomDto =RoomDto.builder()
-               .id(roomId)
-               .name(roomName)
-               .number(roomNumber)
-               .maxPerson(maxPerson)
-               .build();
-
+        RoomDto roomDto = RoomDto.builder()
+                .id(roomId)
+                .userId(admin)
+                .name(roomName)
+                .number(roomNumber)
+                .maxPerson(maxPerson)
+                .build();
 
         roomService.update(roomDto);
 
-        logger.log(Level.INFO,roomDto);
-        return router =new Router(PagePath.ADMIN_EDIT_ROOM, Router.Type.FORWARD);
+        logger.log(Level.INFO, roomDto);
+        return router = new Router(PagePath.ADMIN_EDIT_ROOM, Router.Type.FORWARD);
     }
 }

@@ -16,6 +16,7 @@ public class RoomMapper implements Mapper<RoomDto, Room> {
     @Override
     public Room mapFrom(RoomDto object) {
         return Room.builder()
+                .id(object.getId())
                 .userId(object.getUserId())
                 .name(object.getName())
                 .maxPerson(object.getMaxPerson())
