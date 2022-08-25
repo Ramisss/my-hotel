@@ -6,17 +6,17 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class RoomMapper implements Mapper<RoomDto, Room>{
+public class RoomMapper implements Mapper<RoomDto, Room> {
     public static final RoomMapper INSTANCE = new RoomMapper();
 
-    public static RoomMapper getInstance(){
+    public static RoomMapper getInstance() {
         return INSTANCE;
     }
 
     @Override
     public Room mapFrom(RoomDto object) {
         return Room.builder()
-                .id(object.getId())
+                .userId(object.getUserId())
                 .name(object.getName())
                 .maxPerson(object.getMaxPerson())
                 .hotelId(object.getHotelId())

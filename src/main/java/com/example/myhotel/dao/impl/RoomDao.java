@@ -149,7 +149,7 @@ public class RoomDao implements Dao<Integer, Room> {
             Connection connection = ConnectionTestPool.get();
             var prepareStatement = connection.prepareStatement(SAVE_SQL);
 
-            if (entity.getHotelId() == null || entity.getUserId() == null) {
+            if (entity.getHotelId() == null) {
                 logger.log(Level.ERROR, "User Id or Hotel Id is null (RoomDao-method save)");
                 throw new DaoException("UserId or Hotel Id is null");
             }

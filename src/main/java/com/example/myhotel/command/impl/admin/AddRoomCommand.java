@@ -24,22 +24,21 @@ public class AddRoomCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException, ServiceException {
         HttpSession httpSession = request.getSession();
 //        Object hotelId = httpSession.getAttribute("hotelId");
-        Object userId = httpSession.getAttribute("userId");
+        Integer userId = (Integer) httpSession.getAttribute("userId");
         Router router = null;
 
-        String roomName = request.getParameter(RequestParameter.ROOM_NAME);
-        String maxPerson = request.getParameter(RequestParameter.MAX_PERSON);
-        Short paceToShort = Short.valueOf(maxPerson);
         String hotelName = request.getParameter(RequestParameter.HOTEL_NAME);
+        String roomName = request.getParameter(RequestParameter.ROOM_NAME);
         Integer number = Integer.valueOf(request.getParameter(RequestParameter.ROOM_NUMBER));
+        Short maxPerson = Short.valueOf(request.getParameter(RequestParameter.MAX_PERSON));
 
-        int hotelId = hotelService.findHotelByName(hotelName);
+        Integer hotelId = hotelService.findHotelByName(hotelName);
 
         RoomDto roomDto = RoomDto.builder()
+                .userId(userId)
                 .name(roomName)
-                .maxPerson(paceToShort)
-                .userId((Integer) userId)
-                .hotelId((Integer) hotelId)
+                .maxPerson(maxPerson)
+                .hotelId(hotelId)
                 .isOrdered(false)
                 .number(number)
                 .build();
